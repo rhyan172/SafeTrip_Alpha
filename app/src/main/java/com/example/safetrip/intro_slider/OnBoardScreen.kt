@@ -1,6 +1,8 @@
 package com.example.safetrip.intro_slider
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,7 +16,22 @@ import kotlinx.android.synthetic.main.activity_intro_slider.*
 
 class OnBoardScreen : AppCompatActivity() {
     private val fragmentList = ArrayList<Fragment>()
+
+    //for one time intro slider
+    lateinit var preference : SharedPreferences
+    //this is the key for the one time intro slider
+    val pref_intro = "Intro"
+
+    //main method
     override fun onCreate(savedInstanceState: Bundle?) {
+        //making the one time intro slider
+        preference = getSharedPreferences("vpIntroSlider" , Context.MODE_PRIVATE)
+        //flag for first time use. we use this code to prevent the intro slider from opening after first use
+        if (!preference.getBoolean(pref_intro,true)) {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
+
         super.onCreate(savedInstanceState)
         // making the status bar transparent
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP ) {
@@ -36,6 +53,8 @@ class OnBoardScreen : AppCompatActivity() {
         indicatorLayout.selectCurrentPosition(0)
         registerListeners()
     }
+
+    //action listener for fragments and buttons
     private fun registerListeners() {
         vpIntroSlider.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
@@ -50,8 +69,12 @@ class OnBoardScreen : AppCompatActivity() {
             }
         })
         tvSkip.setOnClickListener {
-            startActivity(Intent(this, OnBoardScreen::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
+            //this will stop the intro slider next time when opening the app
+            val editor = preference.edit()
+            editor.putBoolean(pref_intro, false)
+            editor.apply()
         }
         tvNext.setOnClickListener {
             val position = vpIntroSlider.currentItem
@@ -60,6 +83,10 @@ class OnBoardScreen : AppCompatActivity() {
             } else {
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
+                //this will stop the intro slider next time when opening the app
+                val editor = preference.edit()
+                editor.putBoolean(pref_intro, false)
+                editor.apply()
             }
         }
     }
