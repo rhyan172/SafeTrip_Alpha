@@ -13,7 +13,7 @@
         <activity android:name=".MainActivity" />
 <!--        declaration for splash screen-->
         <activity
-            android:name=".SplashscreenActivity"
+            android:name=".splash_screen.SplashscreenActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +23,7 @@
         </activity>
 <!--        declaration for intro slider-->
         <activity
-            android:name=".OnBoardScreen"
+            android:name=".intro_slider.OnBoardScreen"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
     </application>
 </manifest>

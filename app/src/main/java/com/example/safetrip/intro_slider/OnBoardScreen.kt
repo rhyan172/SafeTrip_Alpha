@@ -1,4 +1,4 @@
-package com.example.safetrip
+package com.example.safetrip.intro_slider
 
 import android.content.Intent
 import android.os.Build
@@ -8,10 +8,10 @@ import android.view.View
 import android.view.WindowManager
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
+import com.example.safetrip.R
 import com.example.safetriponboard.Intro1Fragment
 import com.example.safetriponboard.Intro2Fragment
 import com.example.safetriponboard.Intro3Fragment
-import com.example.safetriponboard.IntroSliderAdapter
 import kotlinx.android.synthetic.main.activity_intro_slider.*
 class OnBoardScreen : AppCompatActivity() {
     private val fragmentList = ArrayList<Fragment>()

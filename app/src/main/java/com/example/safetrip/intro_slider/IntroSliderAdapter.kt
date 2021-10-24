@@ -1,4 +1,4 @@
-package com.example.safetriponboard
+package com.example.safetrip.intro_slider
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

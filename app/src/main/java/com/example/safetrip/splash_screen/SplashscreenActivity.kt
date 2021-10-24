@@ -1,10 +1,12 @@
-package com.example.safetrip
+package com.example.safetrip.splash_screen
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.WindowManager
+import com.example.safetrip.R
+import com.example.safetrip.intro_slider.OnBoardScreen
 
 @Suppress("DEPRECATION")
 class SplashscreenActivity : AppCompatActivity() {

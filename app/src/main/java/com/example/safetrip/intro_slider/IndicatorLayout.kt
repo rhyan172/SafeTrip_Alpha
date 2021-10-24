@@ -1,4 +1,4 @@
-package com.example.safetriponboard
+package com.example.safetrip.intro_slider
 
 import android.content.Context
 import android.util.AttributeSet
