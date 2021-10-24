@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="convenience">
+        Passengers can pay the fare in a quick process without having to interact with\n the other passenger
+    </string>
+    <string name="cashless">
+        Passengers and drivers won\'t have to worry about having bigger note or exchange of money.
+    </string>
+    <string name="rewards">
+        Passengers can get free rides once they accumulated an exact amount of points to exchange.
+    </string>
+</resources>
