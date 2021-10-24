@@ -8,6 +8,7 @@ import android.view.View
 import android.view.WindowManager
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
+import com.example.safetrip.MainActivity
 import com.example.safetrip.R
 import kotlinx.android.synthetic.main.activity_intro_slider.*
 
@@ -57,7 +58,7 @@ class OnBoardScreen : AppCompatActivity() {
             if (position < fragmentList.lastIndex) {
                 vpIntroSlider.currentItem = position + 1
             } else {
-                startActivity(Intent(this, OnBoardScreen::class.java))
+                startActivity(Intent(this, MainActivity::class.java))
                 finish()
             }
         }
