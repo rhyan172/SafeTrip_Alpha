@@ -9,9 +9,6 @@ import android.view.WindowManager
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.safetrip.R
-import com.example.safetriponboard.Intro1Fragment
-import com.example.safetriponboard.Intro2Fragment
-import com.example.safetriponboard.Intro3Fragment
 import kotlinx.android.synthetic.main.activity_intro_slider.*
 class OnBoardScreen : AppCompatActivity() {
     private val fragmentList = ArrayList<Fragment>()

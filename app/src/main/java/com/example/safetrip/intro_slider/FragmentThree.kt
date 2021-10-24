@@ -1,10 +1,11 @@
-package com.example.safetrip
+package com.example.safetrip.intro_slider
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.safetrip.R
 
 
 class Intro3Fragment : Fragment() {

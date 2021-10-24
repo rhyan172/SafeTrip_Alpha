@@ -1,4 +1,4 @@
-package com.example.safetriponboard
+package com.example.safetrip.intro_slider
 
 import android.os.Bundle
 import android.view.LayoutInflater
