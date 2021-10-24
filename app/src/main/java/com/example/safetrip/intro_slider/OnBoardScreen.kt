@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.safetrip.R
 import kotlinx.android.synthetic.main.activity_intro_slider.*
+
 class OnBoardScreen : AppCompatActivity() {
     private val fragmentList = ArrayList<Fragment>()
     override fun onCreate(savedInstanceState: Bundle?) {
