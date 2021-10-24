@@ -1,11 +1,11 @@
-package com.example.safetriponboard
+package com.example.safetrip
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.safetrip.R
+
 
 class Intro3Fragment : Fragment() {
     override fun onCreateView(
