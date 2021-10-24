@@ -4,6 +4,8 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
+import com.example.safetrip.R
+
 class IndicatorLayout : LinearLayout {
     private var indicatorCount: Int = 0
     private var selectedPosition: Int = 0

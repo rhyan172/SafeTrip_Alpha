@@ -10,9 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SafeTrip">
 
-        <meta-data android:name="com.google.android.actions" />
-
         <activity android:name=".MainActivity" />
+<!--        declaration for splash screen-->
         <activity
             android:name=".SplashscreenActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
@@ -22,20 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-<!--     for intro slider   -->
+<!--        declaration for intro slider-->
         <activity
             android:name=".OnBoardScreen"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
     </application>
-
-
-
 </manifest>
