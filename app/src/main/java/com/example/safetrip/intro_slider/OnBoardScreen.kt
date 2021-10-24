@@ -26,6 +26,7 @@ class OnBoardScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         //making the one time intro slider
         preference = getSharedPreferences("vpIntroSlider" , Context.MODE_PRIVATE)
+
         //flag for first time use. we use this code to prevent the intro slider from opening after first use
         if (!preference.getBoolean(pref_intro,true)) {
             startActivity(Intent(this, MainActivity::class.java))
@@ -43,11 +44,13 @@ class OnBoardScreen : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
+
         val adapter = IntroSliderAdapter(this)
         vpIntroSlider.adapter = adapter
         fragmentList.addAll(listOf(
             Intro1Fragment(), Intro2Fragment(), Intro3Fragment()
         ))
+
         adapter.setFragmentList(fragmentList)
         indicatorLayout.setIndicatorCount(adapter.itemCount)
         indicatorLayout.selectCurrentPosition(0)
@@ -76,6 +79,7 @@ class OnBoardScreen : AppCompatActivity() {
             editor.putBoolean(pref_intro, false)
             editor.apply()
         }
+
         tvNext.setOnClickListener {
             val position = vpIntroSlider.currentItem
             if (position < fragmentList.lastIndex) {
