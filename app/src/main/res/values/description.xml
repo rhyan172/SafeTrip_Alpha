@@ -9,4 +9,19 @@
     <string name="rewards">
         Passengers can get free rides once they accumulated an exact amount of points to exchange.
     </string>
+    <string name="signup">
+        Ride with ease, save your money, smoothly track your location and pay at your own comfort with Safetrip.
+    </string>
+    <string name="verificationCode">
+        Please type below the verification code we just sent to
+    </string>
+    <string name="pinCode">
+        This will serve as your password. For security purposes, the app will ask for your PIN if left idle.
+    </string>
+    <string name="pinConfirm">
+        Type the same code from the previous page to make sure if its correct.
+    </string>
+    <string name="logIn">
+        Log in to your SafeTrip account.
+    </string>
 </resources>
