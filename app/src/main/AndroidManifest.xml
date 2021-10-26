@@ -11,7 +11,7 @@
         android:theme="@style/Theme.SafeTrip">
 
         <activity android:name=".MainActivity" />
-<!--        declaration for splash screen-->
+        <!--        declaration for splash screen-->
         <activity
             android:name=".splash_screen.SplashscreenActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
@@ -21,9 +21,35 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<!--        declaration for intro slider-->
+        <!--        declaration for intro slider-->
         <activity
             android:name=".intro_slider.OnBoardScreen"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <!--    declaration for login_signup-->
+        <activity
+            android:name=".LoginSignup"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name=".LogInMain"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name=".LogInWelcome"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name=".SignUpNumber"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name=".SignUpCode"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name=".SignUpName"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name=".SignUpPin"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name=".SignUpConfirm"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
     </application>
 </manifest>

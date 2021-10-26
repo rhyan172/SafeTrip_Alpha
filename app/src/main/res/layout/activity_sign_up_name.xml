@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2a7b90"
+    android:paddingTop="100dp"
+    tools:context=".SignUpName">
+
+    <EditText
+        android:id="@+id/firstName"
+        android:layout_width="325dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="First Name"
+        android:layout_marginTop="100dp"
+        android:textColorHint="#7f7f7f"
+        android:textColor="@color/white"
+        android:background="@drawable/text_input"
+        android:fontFamily="@font/montserrat_regular"
+        android:paddingLeft="20dp" />
+
+    <EditText
+        android:id="@+id/lastName"
+        android:layout_width="325dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/firstName"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="Last Name"
+        android:layout_marginTop="20dp"
+        android:textColorHint="#7f7f7f"
+        android:textColor="@color/white"
+        android:background="@drawable/text_input"
+        android:fontFamily="@font/montserrat_regular"
+        android:paddingLeft="20dp" />
+
+    <Button
+        android:id="@+id/nameNext"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lastName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:textSize="15sp"
+        android:fontFamily="@font/montserrat_bold"
+        android:background="@drawable/button"
+        android:textColor="@color/white"
+        android:text="NEXT" />
+
+</RelativeLayout>
