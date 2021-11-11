@@ -64,12 +64,4 @@
         app:lineColor="@color/white"
         app:viewType="line"
         tools:ignore="SpeakableTextPresentCheck" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textLogin"
-        android:id="@+id/secondTextView"/>
-
-
 </RelativeLayout>

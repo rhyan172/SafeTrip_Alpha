@@ -2,6 +2,7 @@ package com.example.safetrip
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -19,9 +20,7 @@ class SignUpName : AppCompatActivity() {
     lateinit var editFirstName: EditText
     lateinit var editLastName: EditText
     lateinit var nameSave: Button
-    lateinit var phoneNum: EditText
-    lateinit var numBtn: Button
-    lateinit var database: DatabaseReference
+    lateinit var preferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,10 +51,11 @@ class SignUpName : AppCompatActivity() {
     }
 
     private fun saveName() {
-        val sharedPreferences = getSharedPreferences("PHONE_NUMBER", Context.MODE_PRIVATE)
         val firstName = editFirstName.text.toString().trim()
         val lastName = editLastName.text.toString().trim()
-        val numberPhone = sharedPreferences.getString("PNumber", "defaultNumber").toString()
+
+        preferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+        val numberPhone = preferences.getString("PHONE_NUMBER", "NULL").toString()
 
         if (firstName.isEmpty())
         {
@@ -71,7 +71,7 @@ class SignUpName : AppCompatActivity() {
         val ref = FirebaseDatabase.getInstance().getReference("Names")
         val nameKey = ref.push().key
 
-        val names = UserName(nameKey, firstName, lastName, numberPhone)
+        val names = UserName(nameKey, firstName, lastName, "+63"+numberPhone)
 
         ref.child(nameKey.toString()).setValue(names).addOnCompleteListener {
             Toast.makeText(applicationContext,"Name Saved Successfully", Toast.LENGTH_LONG).show()

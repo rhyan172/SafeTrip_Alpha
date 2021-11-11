@@ -25,11 +25,6 @@ class SignUpCode : AppCompatActivity() {
 
         auth= FirebaseAuth.getInstance()
 
-        val intentValue = intent.getStringExtra("Data")
-        findViewById<TextView>(R.id.secondTextView).apply{
-            text = intentValue.toString()
-        }
-
         val button = findViewById<Button>(R.id.phoneVerify)
         button.setOnClickListener {
             val intent = Intent(this, SignUpName::class.java)

@@ -2,6 +2,7 @@ package com.example.safetrip
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -24,6 +25,8 @@ class SignUpNumber : AppCompatActivity() {
     lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
     private lateinit var callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
     private lateinit var phone: EditText
+    //shared preference for capturing phone number to be use on database later on
+    lateinit var sharedPreferences: SharedPreferences
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,14 +65,6 @@ class SignUpNumber : AppCompatActivity() {
         val sign = findViewById<Button>(R.id.phoneNext)
         phone = findViewById(R.id.phoneNumber)
 
-        val id = 1
-        val phn = phone.text.toString()
-        val sharedPreferences = getSharedPreferences("PHONE_NUMBER", Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putString("PNumber", phn)
-        editor.putInt("id", id)
-        editor.apply()
-
         var currentUser = auth.currentUser
         if(currentUser != null) {
             startActivity(Intent(applicationContext, SignUpName::class.java))
@@ -77,7 +72,12 @@ class SignUpNumber : AppCompatActivity() {
         }
 
         sign.setOnClickListener{
-
+            //shared preference for capturing phone number to be use on database later on
+            sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+            val pnumber = phone.text.toString()
+            val edtr = sharedPreferences.edit()
+            edtr.putString("PHONE_NUMBER", pnumber)
+            edtr.apply()
             signUp()
         }
     }
