@@ -18,34 +18,19 @@
         android:textSize="22sp"
         android:text="Enter Verification Code" />
 
-    <EditText
-        android:id="@+id/verificationCode"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_below="@id/textView6"
-        android:layout_centerHorizontal="true"
-        android:ems="10"
-        android:hint="Enter Code"
-        android:inputType="number"
-        android:layout_marginTop="20dp"
-        android:textColorHint="#7f7f7f"
-        android:textColor="@color/white"
-        android:background="@drawable/text_input"
-        android:fontFamily="@font/montserrat_regular"
-        android:paddingLeft="20dp" />
 
     <Button
         android:id="@+id/phoneVerify"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/verificationCode"
+        android:layout_below="@id/otp_view"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:textSize="15sp"
-        android:fontFamily="@font/montserrat_bold"
         android:background="@drawable/button"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="VERIFY"
         android:textColor="@color/white"
-        android:text="VERIFY" />
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/textLogin"
@@ -61,6 +46,30 @@
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="15sp" />
+
+    <com.chaos.view.PinView
+        android:id="@+id/otp_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView6"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:focusableInTouchMode="true"
+        android:fontFamily="@font/montserrat_bold"
+        android:inputType="number"
+        android:itemBackground="@color/white"
+        android:textColor="@android:color/white"
+        android:textSize="25sp"
+        app:itemCount="6"
+        app:lineColor="@color/white"
+        app:viewType="line"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textLogin"
+        android:id="@+id/secondTextView"/>
 
 
 </RelativeLayout>
