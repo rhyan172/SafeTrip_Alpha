@@ -2,13 +2,14 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'com.google.gms.google-services'
+    id 'kotlin-android-extensions'
 }
 
 android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "com.example.signup"
+        applicationId "com.example.safetrip"
         minSdk 21
         targetSdk 31
         versionCode 1

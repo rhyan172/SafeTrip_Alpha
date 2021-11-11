@@ -19,6 +19,7 @@
         <!--        declaration for splash screen-->
         <activity
             android:name=".splash_screen.SplashscreenActivity"
+            android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,7 +42,7 @@
             android:name=".LogInWelcome"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
-            android:name=".login_signup.SignUpNumber"
+            android:name=".SignUpNumber"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".SignUpCode"

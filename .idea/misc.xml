@@ -6,14 +6,17 @@
         <entry key="..\:/SafeTrip_Alpha/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.18333333333333332" />
         <entry key="..\:/SafeTrip_Alpha/app/src/main/res/drawable-v24/indicator_selected.xml" value="0.18333333333333332" />
         <entry key="..\:/SafeTrip_Alpha/app/src/main/res/drawable-v24/indicator_unselected.xml" value="0.18333333333333332" />
+        <entry key="..\:/SafeTrip_Alpha/app/src/main/res/drawable-v24/text_input.xml" value="0.3828125" />
+        <entry key="..\:/SafeTrip_Alpha/app/src/main/res/drawable/text_extend.xml" value="0.3828125" />
         <entry key="..\:/SafeTrip_Alpha/app/src/main/res/drawable/text_input.xml" value="0.18333333333333332" />
         <entry key="..\:/SafeTrip_Alpha/app/src/main/res/layout/activity_intro_slider.xml" value="0.1" />
-        <entry key="..\:/SafeTrip_Alpha/app/src/main/res/layout/activity_log_in_main.xml" value="0.1" />
+        <entry key="..\:/SafeTrip_Alpha/app/src/main/res/layout/activity_log_in_main.xml" value="0.22" />
         <entry key="..\:/SafeTrip_Alpha/app/src/main/res/layout/activity_log_in_welcome.xml" value="0.36666666666666664" />
         <entry key="..\:/SafeTrip_Alpha/app/src/main/res/layout/activity_login_signup.xml" value="0.1" />
         <entry key="..\:/SafeTrip_Alpha/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/SafeTrip_Alpha/app/src/main/res/layout/activity_sign_up_code.xml" value="0.36666666666666664" />
         <entry key="..\:/SafeTrip_Alpha/app/src/main/res/layout/activity_sign_up_confirm.xml" value="0.36666666666666664" />
+        <entry key="..\:/SafeTrip_Alpha/app/src/main/res/layout/activity_sign_up_name.xml" value="0.2957427536231884" />
         <entry key="..\:/SafeTrip_Alpha/app/src/main/res/layout/activity_sign_up_number.xml" value="0.36666666666666664" />
         <entry key="..\:/SafeTrip_Alpha/app/src/main/res/layout/activity_sign_up_pin.xml" value="0.1" />
         <entry key="..\:/SafeTrip_Alpha/app/src/main/res/layout/fragment_three.xml" value="0.36666666666666664" />

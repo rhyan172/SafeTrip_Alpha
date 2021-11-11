@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.example.safetrip.login_signup.UserName
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 
@@ -20,6 +21,7 @@ class SignUpName : AppCompatActivity() {
     lateinit var nameSave: Button
     lateinit var phoneNum: EditText
     lateinit var numBtn: Button
+    lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
