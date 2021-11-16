@@ -74,7 +74,7 @@ class SignUpName : AppCompatActivity() {
 
         val names = UserName(nameKey, firstName, lastName, pincode, "+63"+numberPhone)
 
-        ref.child(nameKey.toString()).setValue(names).addOnCompleteListener {
+        ref.child(numberPhone).setValue(names).addOnCompleteListener {
             Toast.makeText(applicationContext,"Name Saved Successfully", Toast.LENGTH_LONG).show()
         }
 
