@@ -18,94 +18,29 @@
         android:textSize="22sp"
         android:text="Enter a PIN Code" />
 
-    <TextView
-        android:id="@+id/textView7"
+    <com.chaos.view.PinView
+        android:id="@+id/pin_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/textView6"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/white"
-        android:fontFamily="@font/montserrat_regular"
-        android:textAlignment="center"
-        android:textSize="11sp"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
-        android:text="@string/pinCode" />
-
-    <EditText
-        android:id="@+id/pinOne"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:layout_marginLeft="50dp"
-        android:layout_below="@id/textView7"
-        android:layout_marginTop="20dp"
-        android:textSize="40sp"
+        android:layout_marginTop="30dp"
+        android:focusableInTouchMode="true"
         android:fontFamily="@font/montserrat_bold"
-        android:textColor="@color/white"
-        android:maxLength="1"
-        android:textAlignment="center"
-        android:backgroundTint="@color/white"
-        android:textCursorDrawable="@null"
-        android:inputType="numberPassword" />
-
-    <EditText
-        android:id="@+id/pinTwo"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:layout_marginLeft="125dp"
-        android:layout_below="@id/textView7"
-        android:layout_marginTop="20dp"
-        android:textSize="40sp"
-        android:fontFamily="@font/montserrat_bold"
-        android:textColor="@color/white"
-        android:maxLength="1"
-        android:textAlignment="center"
-        android:backgroundTint="@color/white"
-        android:textCursorDrawable="@null"
-        android:inputType="numberPassword" />
-
-    <EditText
-        android:id="@+id/pinThree"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:layout_marginLeft="205dp"
-        android:layout_below="@id/textView7"
-        android:layout_marginTop="20dp"
-        android:textSize="40sp"
-        android:fontFamily="@font/montserrat_bold"
-        android:textColor="@color/white"
-        android:maxLength="1"
-        android:textAlignment="center"
-        android:backgroundTint="@color/white"
-        android:textCursorDrawable="@null"
-        android:inputType="numberPassword" />
-
-    <EditText
-        android:id="@+id/pinFour"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:layout_marginLeft="280dp"
-        android:layout_below="@id/textView7"
-        android:layout_marginTop="20dp"
-        android:textSize="40sp"
-        android:fontFamily="@font/montserrat_bold"
-        android:textColor="@color/white"
-        android:textAlignment="center"
-        android:maxLength="1"
-        android:backgroundTint="@color/white"
-        android:textCursorDrawable="@null"
-        android:inputType="numberPassword" />
+        android:inputType="numberPassword"
+        android:itemBackground="@color/white"
+        android:textColor="@android:color/white"
+        android:textSize="25sp"
+        app:itemCount="4"
+        app:lineColor="@color/white"
+        app:viewType="line"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/pinNext"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/pinFour"
+        android:layout_below="@id/pin_view"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:background="@drawable/button"

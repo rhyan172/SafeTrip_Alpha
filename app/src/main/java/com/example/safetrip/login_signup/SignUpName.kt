@@ -43,7 +43,7 @@ class SignUpName : AppCompatActivity() {
 
         nameSave.setOnClickListener{
             saveName()
-            val intent = Intent(this, SignUpPin::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
 
@@ -56,6 +56,7 @@ class SignUpName : AppCompatActivity() {
 
         preferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
         val numberPhone = preferences.getString("PHONE_NUMBER", "NULL").toString()
+        val pincode = preferences.getString("CONFIRM_PIN_CODE", "NULL").toString()
 
         if (firstName.isEmpty())
         {
@@ -71,7 +72,7 @@ class SignUpName : AppCompatActivity() {
         val ref = FirebaseDatabase.getInstance().getReference("Names")
         val nameKey = ref.push().key
 
-        val names = UserName(nameKey, firstName, lastName, "+63"+numberPhone)
+        val names = UserName(nameKey, firstName, lastName, pincode, "+63"+numberPhone)
 
         ref.child(nameKey.toString()).setValue(names).addOnCompleteListener {
             Toast.makeText(applicationContext,"Name Saved Successfully", Toast.LENGTH_LONG).show()

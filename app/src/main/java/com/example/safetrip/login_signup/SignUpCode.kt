@@ -27,7 +27,7 @@ class SignUpCode : AppCompatActivity() {
 
         val button = findViewById<Button>(R.id.phoneVerify)
         button.setOnClickListener {
-            val intent = Intent(this, SignUpName::class.java)
+            val intent = Intent(this, SignUpPin::class.java)
 
             startActivity(intent)
         }
@@ -54,7 +54,7 @@ class SignUpCode : AppCompatActivity() {
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    startActivity(Intent(applicationContext, SignUpName::class.java))
+                    startActivity(Intent(applicationContext, SignUpPin::class.java))
                     finish()
 // ...
                 } else {
