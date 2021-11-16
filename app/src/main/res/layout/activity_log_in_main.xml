@@ -34,15 +34,15 @@
         android:layout_height="50dp"
         android:layout_below="@id/textView"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/text_main"
         android:ems="10"
+        android:fontFamily="@font/montserrat_regular"
         android:hint="0912345678"
         android:inputType="number"
-        android:layout_marginTop="20dp"
-        android:textColorHint="#7f7f7f"
+        android:paddingLeft="20dp"
         android:textColor="@color/white"
-        android:background="@drawable/text_input"
-        android:fontFamily="@font/montserrat_regular"
-        android:paddingLeft="20dp" />
+        android:textColorHint="#7f7f7f" />
 
     <Button
         android:id="@+id/logInBtn"
