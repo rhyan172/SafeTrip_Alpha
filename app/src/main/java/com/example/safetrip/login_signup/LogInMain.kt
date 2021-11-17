@@ -1,6 +1,8 @@
 package com.example.safetrip
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -17,6 +19,7 @@ class LogInMain : AppCompatActivity() {
 
     lateinit var ref : DatabaseReference
     lateinit var LoginPhone: EditText
+    lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,12 +46,15 @@ class LogInMain : AppCompatActivity() {
     private fun login(phoneLogin: String) {
         ref = FirebaseDatabase.getInstance().getReference("Names")
         ref.child(phoneLogin).get().addOnSuccessListener {
+            sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
 
             if(it.exists()){
                 val pnumber = it.child("pnum").value
                 val numberP = LoginPhone.text.toString()
                 val pn = "+63$numberP"
                     if(pn == pnumber){
+                        val pinCode = it.child("pin").value
+
                         val intent = Intent(this, LogInWelcome::class.java)
                         startActivity(intent)
                     }
