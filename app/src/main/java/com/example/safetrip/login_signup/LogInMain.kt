@@ -47,6 +47,11 @@ class LogInMain : AppCompatActivity() {
         ref = FirebaseDatabase.getInstance().getReference("Names")
         ref.child(phoneLogin).get().addOnSuccessListener {
             sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+            val pnumber = it.child("pnum").value
+            val numberP = pnumber.toString()
+            val editor = sharedPreferences.edit()
+            editor.putString("LOGIN_PHONE_NUMBER", numberP)
+            editor.apply()
 
             if(it.exists()){
                 val pnumber = it.child("pnum").value
@@ -54,7 +59,10 @@ class LogInMain : AppCompatActivity() {
                 val pn = "+63$numberP"
                     if(pn == pnumber){
                         val pinCode = it.child("pin").value
-
+                        val pc = pinCode.toString()
+                        val editor = sharedPreferences.edit()
+                        editor.putString("LOGIN_PIN", pc)
+                        editor.apply()
                         val intent = Intent(this, LogInWelcome::class.java)
                         startActivity(intent)
                     }

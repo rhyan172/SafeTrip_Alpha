@@ -56,9 +56,6 @@ class SignUpNumber : AppCompatActivity() {
                 Log.d("TAG","onCodeSent:$verificationId")
                 storedVerificationId = verificationId
                 resendToken = token
-                var intent = Intent(applicationContext,SignUpCode::class.java)
-                intent.putExtra("storedVerificationId",storedVerificationId)
-                startActivity(intent)
             }
         }
 
@@ -67,7 +64,7 @@ class SignUpNumber : AppCompatActivity() {
 
         var currentUser = auth.currentUser
         if(currentUser != null) {
-            startActivity(Intent(applicationContext, SignUpPin::class.java))
+            startActivity(Intent(applicationContext, LogInWelcome::class.java))
             finish()
         }
 
@@ -88,7 +85,7 @@ class SignUpNumber : AppCompatActivity() {
 
         if(!number.isEmpty()){
             number="+63"+number
-            sendVerificationcode (number)
+            sendVerificationcode(number)
         }else{
             Toast.makeText(this,"Enter mobile number", Toast.LENGTH_SHORT).show()
         }
