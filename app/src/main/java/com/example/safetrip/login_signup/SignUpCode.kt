@@ -23,16 +23,9 @@ class SignUpCode : AppCompatActivity() {
 
         auth=FirebaseAuth.getInstance()
 
-        val intentValue = intent.getStringExtra("Data")
-        findViewById<TextView>(R.id.secondTextView).apply{
-            text = intentValue.toString()
-        }
-
         val button = findViewById<Button>(R.id.phoneVerify)
         button.setOnClickListener {
-            val intent = Intent(this, SignUpName::class.java)
-
-            startActivity(intent)
+            startActivity(Intent(this, SignUpPin::class.java))
         }
 
         val storedVerificationId=intent.getStringExtra("storedVerificationId")
@@ -57,7 +50,7 @@ class SignUpCode : AppCompatActivity() {
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    startActivity(Intent(applicationContext, SignUpName::class.java))
+                    startActivity(Intent(applicationContext, SignUpPin::class.java))
                     finish()
 // ...
                 } else {

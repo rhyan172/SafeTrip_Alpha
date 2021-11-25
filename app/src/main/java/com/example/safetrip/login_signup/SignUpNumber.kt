@@ -1,6 +1,8 @@
 package com.example.safetrip
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -21,6 +23,7 @@ class SignUpNumber : AppCompatActivity() {
     lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
     private lateinit var callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
     lateinit var phone: EditText
+    lateinit var sharedPreferences: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         auth=FirebaseAuth.getInstance()
 
@@ -29,6 +32,7 @@ class SignUpNumber : AppCompatActivity() {
         phone = findViewById<EditText>(R.id.phoneNumber)
 
         window.statusBarColor = ContextCompat.getColor(this, R.color.status_bar)
+        sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
 
 
         val button = findViewById<Button>(R.id.phoneNext)
@@ -69,7 +73,11 @@ class SignUpNumber : AppCompatActivity() {
         val sign = findViewById<Button>(R.id.phoneNext)
 
         sign.setOnClickListener{
-
+            val phn = phone.text.toString()
+            sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.putString("PHONE_NUMBER", phn)
+            editor.apply()
             signUp()
 
         }
