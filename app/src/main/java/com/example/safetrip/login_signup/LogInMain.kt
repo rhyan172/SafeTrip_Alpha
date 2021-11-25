@@ -34,6 +34,8 @@ class LogInMain : AppCompatActivity() {
         button.setOnClickListener {
             val phoneLogin = LoginPhone.text.toString()
             if(phoneLogin.isNotEmpty()){
+                val intent = Intent(this, LogInWelcome::class.java)
+                startActivity(intent)
                 login(phoneLogin)
             }
             else
@@ -63,8 +65,6 @@ class LogInMain : AppCompatActivity() {
                         val editor = sharedPreferences.edit()
                         editor.putString("LOGIN_PIN", pc)
                         editor.apply()
-                        val intent = Intent(this, LogInWelcome::class.java)
-                        startActivity(intent)
                     }
             }
             else

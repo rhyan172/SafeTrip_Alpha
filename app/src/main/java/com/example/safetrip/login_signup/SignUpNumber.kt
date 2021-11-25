@@ -1,8 +1,6 @@
 package com.example.safetrip
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,8 +8,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import com.example.safetrip.R
-import com.example.safetrip.SignUpCode
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
@@ -24,13 +20,9 @@ class SignUpNumber : AppCompatActivity() {
     lateinit var storedVerificationId:String
     lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
     private lateinit var callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
-    private lateinit var phone: EditText
-    //shared preference for capturing phone number to be use on database later on
-    lateinit var sharedPreferences: SharedPreferences
-
-
+    lateinit var phone: EditText
     override fun onCreate(savedInstanceState: Bundle?) {
-        auth= FirebaseAuth.getInstance()
+        auth=FirebaseAuth.getInstance()
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up_number)
@@ -38,10 +30,16 @@ class SignUpNumber : AppCompatActivity() {
 
         window.statusBarColor = ContextCompat.getColor(this, R.color.status_bar)
 
+
+        val button = findViewById<Button>(R.id.phoneNext)
+        button.setOnClickListener {
+            val intent = Intent(this, SignUpCode::class.java)
+            startActivity(intent)
+        }
         callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-                startActivity(Intent(applicationContext, SignUpPin::class.java))
+                startActivity(Intent(applicationContext, SignUpName::class.java))
                 finish()
             }
 
@@ -53,29 +51,27 @@ class SignUpNumber : AppCompatActivity() {
                 verificationId: String,
                 token: PhoneAuthProvider.ForceResendingToken
             ) {
+
                 Log.d("TAG","onCodeSent:$verificationId")
                 storedVerificationId = verificationId
                 resendToken = token
+                var intent = Intent(applicationContext,SignUpCode::class.java)
+                intent.putExtra("storedVerificationId",storedVerificationId)
+                startActivity(intent)
             }
         }
 
-        val sign = findViewById<Button>(R.id.phoneNext)
-        phone = findViewById(R.id.phoneNumber)
-
         var currentUser = auth.currentUser
         if(currentUser != null) {
-            startActivity(Intent(applicationContext, LogInWelcome::class.java))
+            startActivity(Intent(applicationContext, SignUpName::class.java))
             finish()
         }
+        val sign = findViewById<Button>(R.id.phoneNext)
 
         sign.setOnClickListener{
-            //shared preference for capturing phone number to be use on database later on
-            sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
-            val pnumber = phone.text.toString()
-            val edtr = sharedPreferences.edit()
-            edtr.putString("PHONE_NUMBER", pnumber)
-            edtr.apply()
+
             signUp()
+
         }
     }
 
@@ -85,10 +81,11 @@ class SignUpNumber : AppCompatActivity() {
 
         if(!number.isEmpty()){
             number="+63"+number
-            sendVerificationcode(number)
+            sendVerificationcode (number)
         }else{
             Toast.makeText(this,"Enter mobile number", Toast.LENGTH_SHORT).show()
         }
+
     }
 
     private fun sendVerificationcode(number: String) {
@@ -100,4 +97,5 @@ class SignUpNumber : AppCompatActivity() {
             .build()
         PhoneAuthProvider.verifyPhoneNumber(options)
     }
+
 }
