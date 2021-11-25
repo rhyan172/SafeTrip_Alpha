@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2a7b90"
+    tools:context=".RewardsFragment">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:text="SafeTrip Rewards" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="1000dp"
+        android:layout_height="170dp"
+        android:layout_below="@id/textView3"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/box"
+        android:text="@null" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:textSize="25sp"
+        android:text="Total Points" />
+
+    <TextView
+        android:id="@+id/textViewPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:textSize="50sp"
+        android:text="0" />
+
+    <View
+        android:layout_width="320dp"
+        android:layout_height="1dp"
+        android:background="@color/white"
+        android:layout_below="@id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        />
+    <View
+        android:layout_width="320dp"
+        android:layout_height="1dp"
+        android:background="@color/white"
+        android:layout_below="@id/textView4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:text="100 pts. = 1 Free Ride" />
+
+    <Button
+        android:id="@+id/redeemRewards"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="130dp"
+        android:textSize="15sp"
+        android:fontFamily="@font/montserrat_bold"
+        android:background="@drawable/button"
+        android:textColor="@color/white"
+        android:text="REDEEM" />
+
+
+</RelativeLayout>

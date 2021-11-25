@@ -11,4 +11,24 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--about-->
+    <string name="about">
+        SafeTrip is designed for a fast fare payment process without using real cash money. As soon as you paid the fare, It will connect you to the real time location of the jeepney while also giving you points as a reward to redeem free rides,
+        allowing you to save money for the next trip.
+    </string>
+    <string name="why">
+        Why use SafeTrip?\n\n
+CONVENIENCE\n helps you to pay the fare without interacting with the other passenger.\n\n
+PAYMENT\n you don\'t need to take out your coin or bank note.\n\n
+REWARDS\n we offer points for every ride to redeem free rides.\n\n
+EASY TO USE\n app  tracking, points, driver\'s info and updates can be viewed instantly.
+    </string>
+    <string name="how">
+        How to get started:\n\n
+Sign up using your mobile phone number.\n\n
+Enter the pin code that will be sent to your number.\n\n
+Enter your basic information\n\n
+Confirm your pin code and you\'re done!
+    </string>
 </resources>

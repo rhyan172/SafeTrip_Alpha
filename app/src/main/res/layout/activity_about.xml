@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2a7b90"
+    tools:context=".About">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="ABOUT" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/textView8"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/app_logo" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/about"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:paddingTop="20dp"
+            android:paddingRight="40dp"
+            android:paddingLeft="40dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:textColor="@color/white"
+            android:layout_below="@id/imageView2"/>
+
+        <View
+            android:layout_width="330dp"
+            android:layout_height="1dp"
+            android:background="@color/white"
+            android:layout_below="@id/textView11"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/why"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:paddingTop="50dp"
+            android:paddingRight="40dp"
+            android:paddingLeft="40dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:textColor="@color/white"
+            android:layout_below="@id/textView11"/>
+
+        <View
+            android:layout_width="330dp"
+            android:layout_height="1dp"
+            android:background="@color/white"
+            android:layout_below="@id/textView12"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/how"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:paddingTop="50dp"
+            android:paddingRight="40dp"
+            android:paddingLeft="40dp"
+            android:paddingBottom="30dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:textColor="@color/white"
+            android:layout_below="@id/textView12"/>
+    </RelativeLayout>
+</ScrollView>

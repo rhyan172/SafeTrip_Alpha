@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2a7b90"
+    tools:context=".EditPin">
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:text="Enter Current PIN" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView6"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/montserrat_regular"
+        android:textAlignment="center"
+        android:textSize="11sp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:text="Please enter your current 4-digit PIN" />
+
+    <com.chaos.view.PinView
+        android:id="@+id/editPin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView6"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:inputType="numberPassword"
+        android:itemBackground="@color/white"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:fontFamily="@font/montserrat_bold"
+        android:focusableInTouchMode="true"
+        app:itemCount="4"
+        app:lineColor="@color/white"
+        app:viewType="line"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/currentPinBtn"
+        android:layout_width="315dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editPin"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:textSize="15sp"
+        android:fontFamily="@font/montserrat_bold"
+        android:background="@drawable/button"
+        android:textColor="@color/white"
+        android:text="NEXT" />
+
+</RelativeLayout>

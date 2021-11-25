@@ -34,8 +34,6 @@ class LogInMain : AppCompatActivity() {
         button.setOnClickListener {
             val phoneLogin = LoginPhone.text.toString()
             if(phoneLogin.isNotEmpty()){
-                val intent = Intent(this, LogInWelcome::class.java)
-                startActivity(intent)
                 login(phoneLogin)
             }
             else
@@ -52,10 +50,19 @@ class LogInMain : AppCompatActivity() {
             val pnumber = it.child("pnum").value
             val numberP = pnumber.toString()
             val editor = sharedPreferences.edit()
-            editor.putString("LOGIN_PHONE_NUMBER", numberP)
+            editor.putString("PHONE_NUMBER", numberP)
+            //get user name
+            val fName = it.child("first").value
+            val lName = it.child("last").value
+            //for settings
+            val FName = fName.toString()
+            val LName = lName.toString()
+            editor.putString("FIRST_NAME", FName)
+            editor.putString("LAST_NAME", LName)
             editor.apply()
 
             if(it.exists()){
+                //get user pin for login use
                 val pnumber = it.child("pnum").value
                 val numberP = LoginPhone.text.toString()
                 val pn = "+63$numberP"
@@ -63,8 +70,10 @@ class LogInMain : AppCompatActivity() {
                         val pinCode = it.child("pin").value
                         val pc = pinCode.toString()
                         val editor = sharedPreferences.edit()
-                        editor.putString("LOGIN_PIN", pc)
+                        editor.putString("PIN", pc)
                         editor.apply()
+                        val intent = Intent(this, LogInWelcome::class.java)
+                        startActivity(intent)
                     }
             }
             else

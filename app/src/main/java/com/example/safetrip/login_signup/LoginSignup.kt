@@ -1,6 +1,8 @@
 package com.example.safetrip
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -9,9 +11,20 @@ import androidx.core.content.ContextCompat
 import com.example.safetrip.R.id.signup_button
 import com.example.safetrip.R.id.textLogin
 
-
 class LoginSignup : AppCompatActivity() {
+
+    lateinit var sharedPreferences: SharedPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        sharedPreferences = getSharedPreferences("ONE_TIME_ACTIVITY", Context.MODE_PRIVATE)
+
+        val check = sharedPreferences.getBoolean("ONE_TIME", false)
+        if(check == true){
+            startActivity(Intent(this, LogInWelcome::class.java))
+            finish()
+        }
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_signup)
         window.statusBarColor = ContextCompat.getColor(this, R.color.status_bar)
@@ -24,6 +37,9 @@ class LoginSignup : AppCompatActivity() {
 
         val textView = findViewById<TextView>(textLogin)
         textView.setOnClickListener {
+            val editor = sharedPreferences.edit()
+            editor.putBoolean("ONE_TIME", true)
+            editor.apply()
             val intent = Intent(this, LogInMain::class.java)
             startActivity(intent)
         }

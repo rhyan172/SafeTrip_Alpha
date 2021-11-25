@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2a7b90"
+    tools:context=".Fingerprint">
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:layout_marginTop="50dp"
+        android:text="FINGERPRINT\nLOGIN" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_below="@id/textView8"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        android:clickable="true"
+        android:text="Enable Fingerprint Login" />
+
+    <Switch
+        android:id="@+id/finger_print_Switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView8"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="30dp"
+        android:thumbTint="#A2D2FF"
+        android:trackTint="@color/white"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_regular"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:layout_below="@id/textView9"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="8dp"
+        android:clickable="true"
+        android:text="Login using Fingerprint instead of PIN" />
+
+</RelativeLayout>

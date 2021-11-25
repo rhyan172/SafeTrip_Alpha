@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2a7b90"
+    tools:context=".SettingsInfo">
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="SETTINGS" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/textView8"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/app_logo" />
+
+    <TextView
+        android:id="@+id/txtEditInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_below="@id/imageView2"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="30dp"
+        android:clickable="true"
+        android:text="Edit your info" />
+
+    <View
+        android:layout_width="330dp"
+        android:layout_height="1dp"
+        android:background="@color/white"
+        android:layout_below="@id/txtEditInfo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        />
+
+    <TextView
+        android:id="@+id/txtEditNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_below="@id/txtEditInfo"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="30dp"
+        android:clickable="true"
+        android:text="Edit mobile number" />
+
+    <View
+        android:layout_width="330dp"
+        android:layout_height="1dp"
+        android:background="@color/white"
+        android:layout_below="@id/txtEditNum"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        />
+
+    <TextView
+        android:id="@+id/txtEditPin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_below="@id/txtEditNum"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="30dp"
+        android:clickable="true"
+        android:text="Change 4-digit PIN" />
+
+    <View
+        android:layout_width="330dp"
+        android:layout_height="1dp"
+        android:background="@color/white"
+        android:layout_below="@id/txtEditPin"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        />
+
+    <Button
+        android:id="@+id/deactivateBtn"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtEditPin"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:textSize="15sp"
+        android:fontFamily="@font/montserrat_bold"
+        android:background="@drawable/logout"
+        android:textColor="@color/white"
+        android:text="DEACTIVATE" />
+
+</RelativeLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="match_parent"
+    android:paddingTop="30dp"
+    android:paddingBottom="30dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:background="@drawable/dialog_main"
+    tools:context=".DialogViewActivity">
+
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/check" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/imageView3"
+        android:fontFamily="@font/montserrat_bold"
+        android:layout_marginTop="10dp"
+        android:textSize="15sp"
+        android:textAlignment="center"
+        android:text="You have successfully registered" />
+
+    <Button
+        android:id="@+id/ok_Btn"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:textSize="15sp"
+        android:fontFamily="@font/montserrat_bold"
+        android:background="@drawable/button"
+        android:textColor="@color/white"
+        android:text="OK" />
+</RelativeLayout>

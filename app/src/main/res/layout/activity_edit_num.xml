@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2a7b90"
+    tools:context=".EditNum">
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="@color/white"
+        android:textSize="22.5sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:text="Enter a new mobile number" />
+
+    <EditText
+        android:id="@+id/phoneExtend"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/textView8"
+        android:layout_alignLeft="@id/textView8"
+        android:ems="10"
+        android:text="+63"
+        android:focusableInTouchMode="false"
+        android:focusable="false"
+        android:layout_marginTop="20dp"
+        android:textColorHint="#7f7f7f"
+        android:textColor="@color/white"
+        android:background="@drawable/text_extend"
+        android:fontFamily="@font/montserrat_regular"
+        android:paddingLeft="20dp" />
+
+    <EditText
+        android:id="@+id/editPhoneNumber"
+        android:layout_width="240dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/textView8"
+        android:layout_alignRight="@id/textView8"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/text_input"
+        android:ems="10"
+        android:fontFamily="@font/montserrat_regular"
+        android:hint="912345678"
+        android:inputType="number"
+        android:paddingLeft="20dp"
+        android:textColor="@color/white"
+        android:textColorHint="#7f7f7f" />
+
+    <Button
+        android:id="@+id/updateNum"
+        android:layout_width="315dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editPhoneNumber"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:textSize="15sp"
+        android:fontFamily="@font/montserrat_bold"
+        android:background="@drawable/button"
+        android:textColor="@color/white"
+        android:text="SAVE" />
+
+</RelativeLayout>
