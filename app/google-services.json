@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "576418123409",
+    "project_id": "safetrip-authentication",
+    "storage_bucket": "safetrip-authentication.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:576418123409:android:849cf798af0c8c3014f930",
+        "android_client_info": {
+          "package_name": "com.example.safetrip"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "576418123409-qc0s2uu028g8jdf2vfn2gn3dbdin21tr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOxZ2D9kTsteHnuYACHrp1WZ4dNhU2TCc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "576418123409-qc0s2uu028g8jdf2vfn2gn3dbdin21tr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:title="Home"
+        android:icon="@mipmap/home_foreground" />
+
+    <item
+        android:id="@+id/payment"
+        android:title="Payment"
+        android:icon="@mipmap/payment_foreground" />
+
+    <item
+        android:id="@+id/reward"
+        android:title="Rewards"
+        android:icon="@mipmap/reward_foreground" />
+
+    <item
+        android:id="@+id/settings"
+        android:title="Settings"
+        android:icon="@mipmap/settings_foreground" />
+</menu>
