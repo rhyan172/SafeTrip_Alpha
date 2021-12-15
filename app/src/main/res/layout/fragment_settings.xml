@@ -24,7 +24,7 @@
         android:layout_marginLeft="140dp"
         android:layout_marginTop="85dp"
         android:fontFamily="@font/montserrat_bold"
-        android:text="Sherwin Guevarra"
+        android:text="Full Name"
         android:textColor="@color/white"
         android:textSize="20sp" />
 
@@ -36,7 +36,7 @@
         android:layout_marginLeft="140dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/montserrat_regular"
-        android:text="+639123456789"
+        android:text="Phone Number"
         android:textColor="@color/white"
         android:textSize="20sp" />
 

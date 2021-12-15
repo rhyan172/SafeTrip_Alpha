@@ -1,11 +1,8 @@
 package com.example.safetrip
 
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.hardware.biometrics.BiometricManager
-import android.hardware.biometrics.BiometricPrompt
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -16,16 +13,12 @@ import android.widget.TextView
 import android.widget.Toast
 
 import androidx.core.content.ContextCompat
-import androidx.core.os.CancellationSignal
-import androidx.core.view.isVisible
 import com.chaos.view.PinView
+import com.example.safetrip.R
 import com.example.safetrip.R.layout.activity_log_in_welcome
+import com.example.safetrip.DashboardMain
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.activity_sign_up_number.*
-import org.w3c.dom.Text
 import java.util.concurrent.Executor
-
 
 class LogInWelcome : AppCompatActivity() {
 
@@ -66,8 +59,8 @@ class LogInWelcome : AppCompatActivity() {
         })
 
         promptInfo=androidx.biometric.BiometricPrompt.PromptInfo.Builder()
-            .setTitle("Biometric Authentication")
-            .setSubtitle("Login using fingerprint")
+            .setTitle("LOGIN")
+            .setSubtitle("use fingerprint to login")
             .setNegativeButtonText("Cancel")
             .build()
 

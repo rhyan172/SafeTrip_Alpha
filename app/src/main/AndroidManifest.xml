@@ -1,23 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.safetrip">
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the "MyLocation" functionality.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- permission for authentication -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
 
-<!--    permission for authentication-->
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
-
-<!--    declarations-->
     <application
         android:allowBackup="true"
         android:icon="@drawable/app_logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.SafeTrip">
-
-        <activity android:name=".MainActivity" />
-        <!--        declaration for splash screen-->
+        android:theme="@style/Theme.SafeTrip"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".dashboard.CashIn"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" /> <!-- for metadata -->
+        <activity android:name=".MainActivity" /> <!-- declaration for splash screen -->
         <activity
             android:name=".splash_screen.SplashscreenActivity"
             android:exported="true"
@@ -27,41 +46,38 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <!--        declaration for intro slider-->
+        </activity> <!-- declaration for intro slider -->
         <activity
             android:name=".intro_slider.OnBoardScreen"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <!--    declaration for login_signup-->
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- declaration for login_signup -->
         <activity
             android:name=".LoginSignup"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".LogInMain"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".LogInWelcome"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".SignUpNumber"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".SignUpCode"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".SignUpName"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".SignUpPin"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".SignUpConfirm"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <!-- Declaration for Main/Dashboard-->
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- Declaration for Main/Dashboard -->
         <activity
             android:name=".EditNewPin"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".EditPin"
             android:exported="true"
@@ -97,6 +113,15 @@
         <activity
             android:name=".DashboardMain"
             android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- for qr code -->
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="fullSensor"
+            tools:replace="screenOrientation" /> <!-- for maps -->
+        <activity
+            android:name=".dashboard.SafeTripLocation"
+            android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
+
 </manifest>

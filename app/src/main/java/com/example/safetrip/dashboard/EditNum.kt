@@ -3,6 +3,7 @@ package com.example.safetrip
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.content.ContextCompat
+import com.example.safetrip.R
 
 class EditNum : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

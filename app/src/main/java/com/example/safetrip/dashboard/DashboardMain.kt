@@ -4,9 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.example.safetrip.R
 import kotlinx.android.synthetic.main.activity_dashboard_main.*
-
-
 
 class DashboardMain : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,19 +23,17 @@ class DashboardMain : AppCompatActivity() {
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.home -> setCurrentFragment(firstFragment)
-                R.id.payment->setCurrentFragment(secondFragment)
-                R.id.reward->setCurrentFragment(thirdFragment)
-                R.id.settings->setCurrentFragment(fourthFragment)
+                R.id.payment ->setCurrentFragment(secondFragment)
+                R.id.reward ->setCurrentFragment(thirdFragment)
+                R.id.settings ->setCurrentFragment(fourthFragment)
 
             }
             true
         }
-
     }
 
     private fun setCurrentFragment(fragment: Fragment) =
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.flFragment, fragment)
-            commit()
+            replace(R.id.flFragment, fragment).commit()
         }
     }

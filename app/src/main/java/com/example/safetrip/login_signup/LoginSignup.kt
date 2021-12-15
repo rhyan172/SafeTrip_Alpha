@@ -10,6 +10,8 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.example.safetrip.R.id.signup_button
 import com.example.safetrip.R.id.textLogin
+import com.example.safetrip.LogInMain
+import com.example.safetrip.LogInWelcome
 
 class LoginSignup : AppCompatActivity() {
 
@@ -43,6 +45,9 @@ class LoginSignup : AppCompatActivity() {
             val intent = Intent(this, LogInMain::class.java)
             startActivity(intent)
         }
+    }
+
+    private fun CheckUser(){
 
     }
 }

@@ -14,9 +14,9 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="150dp"
         android:fontFamily="@font/montserrat_bold"
+        android:text="What's your phone number?"
         android:textColor="@color/white"
-        android:textSize="22sp"
-        android:text="What's your phone number?" />
+        android:textSize="22sp" />
 
     <EditText
         android:id="@+id/phoneExtend"
@@ -63,4 +63,5 @@
         android:background="@drawable/button"
         android:textColor="@color/white"
         android:text="NEXT" />
+
 </RelativeLayout>

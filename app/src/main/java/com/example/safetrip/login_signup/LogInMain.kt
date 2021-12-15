@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import com.example.safetrip.R
 import com.example.safetrip.R.id.logInBtn
 import com.example.safetrip.R.layout.activity_log_in_main
 import com.google.firebase.database.DatabaseReference
@@ -45,7 +46,7 @@ class LogInMain : AppCompatActivity() {
 
     private fun login(phoneLogin: String) {
         ref = FirebaseDatabase.getInstance().getReference("Names")
-        ref.child(phoneLogin).get().addOnSuccessListener {
+        ref.child("+63$phoneLogin").get().addOnSuccessListener {
             sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
             val pnumber = it.child("pnum").value
             val numberP = pnumber.toString()
@@ -59,6 +60,17 @@ class LogInMain : AppCompatActivity() {
             val LName = lName.toString()
             editor.putString("FIRST_NAME", FName)
             editor.putString("LAST_NAME", LName)
+            //for getting email and credits
+            val dEmail = it.child("email").value
+            val dPoints = it.child("points").value
+            val dCredit = it.child("credits").value
+            //for update data
+            val DEmail = dEmail.toString()
+            val DPoints = Integer.parseInt(dPoints.toString())
+            val DCredit = Integer.parseInt(dCredit.toString())
+            editor.putString("EMAIL", DEmail)
+            editor.putInt("POINTS", DPoints)
+            editor.putInt("CREDIT", DCredit)
             editor.apply()
 
             if(it.exists()){

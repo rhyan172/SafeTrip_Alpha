@@ -22,16 +22,16 @@
         android:id="@+id/editFirstName"
         android:layout_width="325dp"
         android:layout_height="50dp"
-        android:layout_centerHorizontal="true"
-        android:ems="10"
-        android:hint="First Name"
         android:layout_below="@id/textView8"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
-        android:textColorHint="#7f7f7f"
-        android:textColor="@color/white"
         android:background="@drawable/text_main"
+        android:ems="10"
         android:fontFamily="@font/montserrat_regular"
-        android:paddingLeft="20dp" />
+        android:hint="First Name"
+        android:paddingLeft="20dp"
+        android:textColor="@color/white"
+        android:textColorHint="#7f7f7f" />
 
     <EditText
         android:id="@+id/editLastName"
@@ -39,14 +39,14 @@
         android:layout_height="50dp"
         android:layout_below="@id/editFirstName"
         android:layout_centerHorizontal="true"
-        android:ems="10"
-        android:hint="Last Name"
         android:layout_marginTop="20dp"
-        android:textColorHint="#7f7f7f"
-        android:textColor="@color/white"
         android:background="@drawable/text_main"
+        android:ems="10"
         android:fontFamily="@font/montserrat_regular"
-        android:paddingLeft="20dp" />
+        android:hint="Last Name"
+        android:paddingLeft="20dp"
+        android:textColor="@color/white"
+        android:textColorHint="#7f7f7f" />
 
     <Button
         android:id="@+id/updateInfo"
@@ -55,10 +55,10 @@
         android:layout_below="@id/editLastName"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:textSize="15sp"
-        android:fontFamily="@font/montserrat_bold"
         android:background="@drawable/button"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="sAVE"
         android:textColor="@color/white"
-        android:text="sAVE" />
+        android:textSize="15sp" />
 
 </RelativeLayout>

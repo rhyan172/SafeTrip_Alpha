@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2a7b90"
+    android:paddingTop="100dp"
+    tools:context=".dashboard.CashIn">
+
+    <EditText
+        android:id="@+id/payAmount"
+        android:layout_width="260dp"
+        android:layout_height="70dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/text_main"
+        android:layout_marginRight="40dp"
+        android:ems="10"
+        android:fontFamily="@font/montserrat_regular"
+        android:hint="Enter Amount"
+        android:inputType="number"
+        android:maxLength="3"
+        android:paddingLeft="30dp"
+        android:textColor="@color/white"
+        android:textColorHint="#7f7f7f"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textPeso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="55dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="₱"
+        android:textColor="@color/white"
+        android:textSize="50sp" />
+
+    <Button
+        android:id="@+id/cashInBtn"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/payAmount"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/button"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="CASH IN"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+</RelativeLayout>

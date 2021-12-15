@@ -5,13 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.content.ContextCompat
 
-import android.content.SharedPreferences
-import android.view.View
-
-import android.widget.CompoundButton
-
 import android.widget.Switch
 import android.widget.Toast
+import com.example.safetrip.R
 import java.util.concurrent.Executor
 
 class Fingerprint : AppCompatActivity() {
@@ -46,7 +42,7 @@ class Fingerprint : AppCompatActivity() {
         })
 
         promptInfo=androidx.biometric.BiometricPrompt.PromptInfo.Builder()
-            .setTitle("Biometric Authentication")
+            .setTitle("Enable Fingerprint")
             .setSubtitle("Login using fingerprint")
             .setNegativeButtonText("Cancel")
             .build()
