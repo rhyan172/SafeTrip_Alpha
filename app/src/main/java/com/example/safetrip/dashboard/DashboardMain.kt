@@ -1,13 +1,20 @@
 package com.example.safetrip
 
+import android.content.Context
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.example.safetrip.R
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_dashboard_main.*
 
 class DashboardMain : AppCompatActivity() {
+
+    lateinit var database: FirebaseDatabase
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard_main)
@@ -26,7 +33,6 @@ class DashboardMain : AppCompatActivity() {
                 R.id.payment ->setCurrentFragment(secondFragment)
                 R.id.reward ->setCurrentFragment(thirdFragment)
                 R.id.settings ->setCurrentFragment(fourthFragment)
-
             }
             true
         }
@@ -36,4 +42,6 @@ class DashboardMain : AppCompatActivity() {
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.flFragment, fragment).commit()
         }
-    }
+
+
+}

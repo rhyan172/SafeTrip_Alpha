@@ -1,12 +1,14 @@
 package com.example.safetrip
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.content.ContextCompat
 
 import android.widget.Switch
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.example.safetrip.R
 import java.util.concurrent.Executor
 
@@ -18,6 +20,7 @@ class Fingerprint : AppCompatActivity() {
     lateinit var biometricPrompt: androidx.biometric.BiometricPrompt
     lateinit var promptInfo: androidx.biometric.BiometricPrompt.PromptInfo
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fingerprint)

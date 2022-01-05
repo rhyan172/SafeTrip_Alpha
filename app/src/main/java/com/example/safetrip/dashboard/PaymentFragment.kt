@@ -23,6 +23,7 @@ class PaymentFragment:Fragment(R.layout.fragment_payment) {
         database.child(paymentP).get().addOnSuccessListener {
             val credPayment = it.child("credits").value
             creditPayment = credPayment.toString()
+
         }
         viewPaymentData()
 

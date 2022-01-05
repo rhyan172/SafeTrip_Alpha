@@ -23,6 +23,7 @@ class RewardsFragment:Fragment(R.layout.fragment_rewards) {
         database.child(rewardsP).get().addOnSuccessListener {
             val pnts = it.child("points").value
             points = pnts.toString()
+
         }
         viewRewardData()
 

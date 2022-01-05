@@ -20,19 +20,18 @@ class SettingsFragment:Fragment(R.layout.fragment_settings) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val preferences = requireActivity().getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
-        val settingsP = preferences.getString("PHONE_NUMBER", "NULL").toString()
+            val preferences = requireActivity().getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+            val settingsP = preferences.getString("PHONE_NUMBER", "NULL").toString()
+            val database = FirebaseDatabase.getInstance().getReference("Names")
+            database.child(settingsP).get().addOnSuccessListener {
+                val firstN = it.child("first").value
+                val lastN = it.child("last").value
+                val num = it.child("pnum").value
 
-        val database = FirebaseDatabase.getInstance().getReference("Names")
-        database.child(settingsP).get().addOnSuccessListener {
-            val firstN = it.child("first").value
-            val lastN = it.child("last").value
-            val num = it.child("pnum").value
-
-            firstName = firstN.toString()
-            lastName = lastN.toString()
-            phnm = num.toString()
-        }
+                firstName = firstN.toString()
+                lastName = lastN.toString()
+                phnm = num.toString()
+            }
 
         viewSettingData()
 

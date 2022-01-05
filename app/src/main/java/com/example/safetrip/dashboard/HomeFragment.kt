@@ -24,10 +24,9 @@ class HomeFragment:Fragment(R.layout.fragment_home) {
         database.child(homeP).get().addOnSuccessListener {
             val cred = it.child("credits").value
             credit = cred.toString()
+
         }
-
         viewHomeData()
-
         rideBtn.setOnClickListener {
             //FirebaseAuth.getInstance().signOut()
             val intent = Intent (activity, ScanPay::class.java)

@@ -23,6 +23,6 @@ class SplashscreenActivity : AppCompatActivity() {
             val intent = Intent(this, OnBoardScreen::class.java)
             startActivity(intent)
             finish()
-        }, 3000)
+        }, 1000)
     }
 }

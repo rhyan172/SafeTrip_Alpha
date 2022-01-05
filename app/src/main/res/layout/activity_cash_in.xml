@@ -14,8 +14,8 @@
         android:layout_height="70dp"
         android:layout_alignParentRight="true"
         android:layout_marginTop="50dp"
-        android:background="@drawable/text_main"
         android:layout_marginRight="40dp"
+        android:background="@drawable/text_main"
         android:ems="10"
         android:fontFamily="@font/montserrat_regular"
         android:hint="Enter Amount"
@@ -37,7 +37,7 @@
         android:textColor="@color/white"
         android:textSize="50sp" />
 
-    <Button
+    <com.paypal.checkout.paymentbutton.PayPalButton
         android:id="@+id/cashInBtn"
         android:layout_width="325dp"
         android:layout_height="wrap_content"

@@ -2,8 +2,10 @@ package com.example.safetrip.dashboard
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.safetrip.R
@@ -28,6 +30,7 @@ class SafeTripLocation : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMa
         private const val LOCATION_REQUEST_CODE = 1
     }
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.statusBarColor = ContextCompat.getColor(this, R.color.status_bar)
@@ -72,11 +75,11 @@ class SafeTripLocation : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMa
             return
         }
         mMap.isMyLocationEnabled = true
-        fusedLocationClient.lastLocation.addOnSuccessListener(this) { SafeLocate ->
-            if (SafeLocate != null)
+        fusedLocationClient.lastLocation.addOnSuccessListener(this) { SafeTripLocation ->
+            if (SafeTripLocation != null)
             {
                 lastSafeLocate = SafeTripLocation()
-                val currentLatLong = LatLng(SafeLocate.latitude, SafeLocate.longitude)
+                val currentLatLong = LatLng(SafeTripLocation.latitude, SafeTripLocation.longitude)
                 placeMarkerOnMap(currentLatLong)
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLong, 19f))
             }
@@ -91,6 +94,6 @@ class SafeTripLocation : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMa
 
     }
 
-    override fun onMarkerClick(p0: Marker?) = false
+    override fun onMarkerClick(p0: Marker): Boolean = false
 }
 

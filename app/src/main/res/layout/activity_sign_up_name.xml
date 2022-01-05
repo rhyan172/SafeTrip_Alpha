@@ -17,7 +17,7 @@
         android:background="@drawable/text_main"
         android:ems="10"
         android:fontFamily="@font/montserrat_regular"
-        android:hint="E-Mail"
+        android:hint="E-Mail (Optional)"
         android:paddingLeft="20dp"
         android:textColor="@color/white"
         android:textColorHint="#7f7f7f" />

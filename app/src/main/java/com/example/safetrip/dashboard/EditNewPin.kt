@@ -1,10 +1,12 @@
 package com.example.safetrip
 
 import android.content.Context
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import com.chaos.view.PinView
 import com.example.safetrip.R
@@ -15,6 +17,7 @@ class EditNewPin : AppCompatActivity() {
 
     lateinit var newpin: PinView
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_new_pin)
