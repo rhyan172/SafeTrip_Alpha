@@ -33,11 +33,6 @@ class EditNewPin : AppCompatActivity() {
     private fun updatePin(){
         val preferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
         val phonenumber = preferences.getString("PHONE_NUMBER", "NULL").toString()
-        val point = preferences.getInt("POINTS", 0)
-        val credit = preferences.getInt("CREDIT", 0)
-        val email = preferences.getString("EMAIL", "NULL").toString()
-        val firstnamePin = preferences.getString("FIRST_NAME", "NULL").toString()
-        val lastnamePin = preferences.getString("LAST_NAME", "NULL").toString()
 
         newpin = findViewById(R.id.editNewPin)
         val newPin = newpin.text.toString()
@@ -49,10 +44,7 @@ class EditNewPin : AppCompatActivity() {
         else
         {
             val ref = FirebaseDatabase.getInstance().getReference("Names")
-            val nameKey = ref.push().key
-
-            val updatedPin = UserName(nameKey, firstnamePin, lastnamePin, newPin, phonenumber, email, credit, point)
-            ref.child(phonenumber).setValue(updatedPin).addOnSuccessListener {
+            ref.child("Names/$phonenumber/pass").setValue(newPin).addOnSuccessListener {
                 Toast.makeText(this, "Update Success", Toast.LENGTH_SHORT).show()
             }
         }

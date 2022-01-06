@@ -33,8 +33,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/montserrat_bold"
-        android:textSize="30sp"
-        android:text="My Wallet" />
+        android:text="My Wallet"
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/textViewPeso"

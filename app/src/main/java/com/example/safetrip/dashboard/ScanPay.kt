@@ -1,8 +1,10 @@
 package com.example.safetrip
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -16,7 +18,7 @@ import kotlinx.android.synthetic.main.activity_scan_pay.*
 class ScanPay : AppCompatActivity() {
 
     private lateinit var fare: TextView
-    private var totalAmount: Double = 0.00
+    private var totalAmount: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +28,7 @@ class ScanPay : AppCompatActivity() {
         fare = findViewById(R.id.textViewTotal)
 
         var increment = 1
-        val farePay: Double = 15.00
+        val farePay: Int = 15
         fare.text = farePay.toString()
         scanPay.setOnClickListener() {
             val sAlertDialogBuilder = AlertDialog.Builder(this)
@@ -47,13 +49,13 @@ class ScanPay : AppCompatActivity() {
             sAlertDialog.show()
         }
 
-        plusBtn.setOnClickListener() {
+        plusBtn.setOnClickListener(){
             increment++
             totalAmount = (farePay * increment)
             numPassenger.setText(increment.toString())
             fare.text = totalAmount.toString()
         }
-        minusBtn.setOnClickListener() {
+        minusBtn.setOnClickListener(){
             increment--
             totalAmount -= 15
             numPassenger.setText(increment.toString())
@@ -68,16 +70,25 @@ class ScanPay : AppCompatActivity() {
             if (result.contents == null) {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(this, "Scanned: " + result.contents, Toast.LENGTH_LONG)
-                    .show()
+                val sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+                val editor = sharedPreferences.edit()
+                editor.putString("DRIVER_INFORMATION", result.contents)
+                editor.apply()
+                passData()
+                Toast.makeText(this, "Scanned Success", Toast.LENGTH_LONG).show()
                 startActivity(Intent(this, SafeTripLocation::class.java))
             }
-        } else {
+        }
+        else {
             super.onActivityResult(requestCode, resultCode, data)
         }
     }
 
-    private fun fareData() {
-
+    private fun passData(){
+        val sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        val fareTotal = fare.text.toString().toInt()
+        editor.putInt("FARE_TOTAL", fareTotal)
+        editor.apply()
     }
 }

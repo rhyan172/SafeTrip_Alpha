@@ -12,12 +12,12 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat_bold"
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
-        android:text="Payment" />
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Payment"
+        android:textColor="@color/white"
+        android:textSize="30sp" />
 
     <ImageView
         android:id="@+id/imageView"

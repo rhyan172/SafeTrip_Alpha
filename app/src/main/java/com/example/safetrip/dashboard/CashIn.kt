@@ -2,11 +2,13 @@ package com.example.safetrip.dashboard
 
 
 
+import android.content.Context
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
+import android.widget.Toast
 
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
@@ -18,6 +20,8 @@ import com.paypal.checkout.createorder.CurrencyCode
 import com.paypal.checkout.createorder.UserAction
 
 import com.example.safetrip.R
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.paypal.checkout.approve.OnApprove
 import com.paypal.checkout.config.SettingsConfig
 import com.paypal.checkout.createorder.CreateOrder
@@ -33,6 +37,8 @@ import kotlinx.android.synthetic.main.activity_cash_in.*
 class CashIn : AppCompatActivity() {
 
     private val cId = "AVB428u3HbP5g1cpKYYqc22qV6c6BplJgkvMe6zZcQLxdpJIPFGS6FWeggVRElnxEjBwp1r6Qhuqdo_L"
+    lateinit var database: DatabaseReference
+    var currentCredit = ""
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -84,10 +90,34 @@ class CashIn : AppCompatActivity() {
                 }
             }
         )
+        CurrentCredit()
     }
 
     private fun successPayment()
     {
+        val preferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+        val phonenumber = preferences.getString("PHONE_NUMBER", "NULL").toString()
+        val incash = payAmount.text.toString().toInt()
 
+        var sum = incash + currentCredit.toInt()
+
+        val ref = FirebaseDatabase.getInstance().getReference()
+        ref.child("Names/$phonenumber/credits").setValue(sum.toString())
+
+    }
+
+    private fun CurrentCredit()
+    {
+        val preferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+        val currentPinNumber = preferences.getString("PHONE_NUMBER", "NULL").toString()
+        database = FirebaseDatabase.getInstance().getReference("Names")
+        database.child(currentPinNumber).get().addOnSuccessListener {
+            if(it.exists())
+            {
+                val pin = it.child("credits").value
+                val currentCred = pin.toString()
+                currentCredit = currentCred
+            }
+        }
     }
 }

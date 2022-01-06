@@ -15,17 +15,17 @@
     </fragment>
 
     <Button
-        android:id="@+id/dropBtn"
+        android:id="@+id/btnDrop"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="50dp"
-        android:textSize="15sp"
-        android:fontFamily="@font/montserrat_bold"
         android:background="@drawable/button"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="DROP OFF"
         android:textColor="@color/white"
-        android:text="DROP OFF" />
+        android:textSize="15sp" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -43,31 +43,9 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="40dp"
         android:fontFamily="@font/montserrat_bold"
-        android:textSize="20sp"
-        android:text="Driver's Name: " />
+        android:text="Driver's Name: "
+        android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/txtDriverNum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/imageView"
-        android:layout_marginLeft="20dp"
-        android:layout_below="@id/txtDriver"
-        android:layout_marginTop="5dp"
-        android:fontFamily="@font/montserrat_bold"
-        android:textSize="20sp"
-        android:text="Driver's No.: " />
 
-    <TextView
-        android:id="@+id/txtPlateNum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/imageView"
-        android:layout_marginLeft="20dp"
-        android:layout_below="@id/txtDriverNum"
-        android:layout_marginTop="5dp"
-        android:fontFamily="@font/montserrat_bold"
-        android:textSize="20sp"
-        android:text="Plate No.: " />
 
 </RelativeLayout>
