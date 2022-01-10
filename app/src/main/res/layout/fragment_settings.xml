@@ -41,13 +41,12 @@
         android:textSize="20sp" />
 
     <View
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/white"
         android:layout_below="@id/imageView3"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        />
+        android:background="@color/white" />
 
     <ImageView
         android:id="@+id/imageView5"

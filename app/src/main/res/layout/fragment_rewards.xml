@@ -84,11 +84,11 @@
         android:layout_below="@id/textView4"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="130dp"
-        android:textSize="15sp"
-        android:fontFamily="@font/montserrat_bold"
         android:background="@drawable/button"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="REDEEM"
         android:textColor="@color/white"
-        android:text="REDEEM" />
+        android:textSize="15sp" />
 
 
 </RelativeLayout>

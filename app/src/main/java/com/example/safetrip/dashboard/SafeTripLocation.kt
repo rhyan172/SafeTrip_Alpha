@@ -3,6 +3,7 @@ package com.example.safetrip.dashboard
 import android.Manifest
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -22,6 +23,7 @@ import com.example.safetrip.databinding.ActivitySafeTripLocationBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.model.*
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_safe_trip_location.*
 
@@ -31,7 +33,9 @@ class SafeTripLocation : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMa
     private lateinit var binding: ActivitySafeTripLocationBinding
     private lateinit var lastSafeLocate: SafeTripLocation
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private var currentCreditOfUser: Double = 0.0
+    private lateinit var preferences: SharedPreferences
+    private lateinit var database: DatabaseReference
+    private var currentCreditUser: Int = 0
 
     companion object{
         private const val LOCATION_REQUEST_CODE = 1
@@ -52,21 +56,30 @@ class SafeTripLocation : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMa
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
-        val preferences = getSharedPreferences("SHARED_PREF", MODE_PRIVATE)
+        preferences = getSharedPreferences("SHARED_PREF", MODE_PRIVATE)
         val driverInfo = preferences.getString("DRIVER_INFORMATION", "NULL").toString()
         val pnc = preferences.getString("PHONE_NUMBER", "NULL")
         val payTotalFare = preferences.getInt("FARE_TOTAL", 0)
-        val currentCredit = preferences.getInt("CREDIT", 0)
+
+        database = FirebaseDatabase.getInstance().getReference()
+        database.child("Names/$pnc").get().addOnSuccessListener {
+            if(it.exists()){
+                var currentBal = it.child("credits").value
+                currentCreditUser = currentBal.toString().toInt()
+            }
+        }
+
         txtDriver.text = driverInfo
 
         val btnDrop = findViewById<Button>(R.id.btnDrop)
 
         btnDrop.setOnClickListener()
         {
-            val updateCredit = currentCredit - payTotalFare
-            val database = FirebaseDatabase.getInstance().getReference()
+            val updateCredit = currentCreditUser - payTotalFare
+            val database = FirebaseDatabase.getInstance().reference
             database.child("Names/$pnc/credits").setValue(updateCredit)
             startActivity(Intent(this, DashboardMain::class.java))
+            finish()
         }
     }
 

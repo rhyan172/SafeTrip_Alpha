@@ -2,38 +2,56 @@ package com.example.safetrip
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.example.safetrip.*
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.fragment_rewards.*
 import kotlinx.android.synthetic.main.fragment_settings.*
 
 class SettingsFragment:Fragment(R.layout.fragment_settings) {
 
-    private var firstName: String = "First Name"
-    private var lastName: String = "Last Name"
-    private var phnm: String = "Phone Number"
+    private lateinit var database: DatabaseReference
+    private lateinit var preferences: SharedPreferences
+    private var settingFirstName: String = ""
+    private var settingLastName: String = ""
+    private var settingPhoneNumber: String = ""
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-            val preferences = requireActivity().getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
-            val settingsP = preferences.getString("PHONE_NUMBER", "NULL").toString()
-            val database = FirebaseDatabase.getInstance().getReference("Names")
-            database.child(settingsP).get().addOnSuccessListener {
-                val firstN = it.child("first").value
-                val lastN = it.child("last").value
-                val num = it.child("pnum").value
+        database = FirebaseDatabase.getInstance().getReference("Names")
+        database.addValueEventListener(object: ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
 
-                firstName = firstN.toString()
-                lastName = lastN.toString()
-                phnm = num.toString()
             }
 
-        viewSettingData()
+            override fun onDataChange(snapshot: DataSnapshot) {
+                preferences = requireActivity().getSharedPreferences("SHARED_PREF", AppCompatActivity.MODE_PRIVATE)
+                val phoneNumberHome = preferences.getString("PHONE_NUMBER", "NULL")
+                database = FirebaseDatabase.getInstance().reference
+                database.child("Names/$phoneNumberHome").get().addOnSuccessListener {
+                    if(it.exists()){
+                        val firstName = it.child("first").value
+                        val lastName = it.child("last").value
+                        val phnm = it.child("pnum").value
+
+                        settingFirstName = firstName.toString()
+                        settingLastName = lastName.toString()
+                        settingPhoneNumber = phnm.toString()
+
+                        val fullName = "$settingFirstName $settingLastName"
+                        textViewName.text = fullName
+                        textViewNumber.text = "$settingPhoneNumber"
+                    }
+                }
+            }
+        })
 
         textViewAbout.setOnClickListener {
             val intent = Intent(getActivity(), About::class.java)
@@ -65,11 +83,4 @@ class SettingsFragment:Fragment(R.layout.fragment_settings) {
             startActivity(intent)
         }
     }
-
-    fun viewSettingData(){
-        var fullName = "$firstName $lastName"
-        textViewName.text = fullName
-        textViewNumber.text = phnm
-    }
-
 }

@@ -31,31 +31,40 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/imageView2"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/montserrat_bold"
         android:text="My Wallet"
-        android:textSize="30sp" />
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="64dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="Available Balance"
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/textViewPeso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/textView2"
-        android:layout_alignLeft="@id/imageView2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_alignLeft="@id/textViewWalletHome"
+        android:layout_marginLeft="-35dp"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/montserrat_bold"
-        android:text="₱"
-        android:textSize="50sp" />
+        android:text="PHP"
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/textViewWalletHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/textView2"
-        android:layout_alignLeft="@id/textView2"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="35dp"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/montserrat_bold"
         android:text="0.00"

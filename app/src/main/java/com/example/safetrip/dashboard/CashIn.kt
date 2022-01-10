@@ -3,6 +3,7 @@ package com.example.safetrip.dashboard
 
 
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -87,6 +88,7 @@ class CashIn : AppCompatActivity() {
                 approval.orderActions.capture { captureOrderResult ->
                     Log.i("CaptureOrder", "CaptureOrderResult: $captureOrderResult")
                     successPayment()
+                    finish()
                 }
             }
         )

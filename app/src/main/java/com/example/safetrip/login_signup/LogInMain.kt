@@ -62,15 +62,9 @@ class LogInMain : AppCompatActivity() {
             editor.putString("LAST_NAME", LName)
             //for getting email and credits
             val dEmail = it.child("email").value
-            val dPoints = it.child("points").value
-            val dCredit = it.child("credits").value
             //for update data
             val DEmail = dEmail.toString()
-            val DPoints = Integer.parseInt(dPoints.toString())
-            val DCredit = Integer.parseInt(dCredit.toString())
             editor.putString("EMAIL", DEmail)
-            editor.putInt("POINTS", DPoints)
-            editor.putInt("CREDIT", DCredit)
             editor.apply()
 
             if(it.exists()){
