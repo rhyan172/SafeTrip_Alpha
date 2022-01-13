@@ -47,6 +47,7 @@ class RewardsFragment:Fragment(R.layout.fragment_rewards) {
         redeemRewards.setOnClickListener(){
             (activity as DashboardMain).getPointsData()
             (activity as DashboardMain).passDataPoints()
+            (activity as DashboardMain).switchForRedeemPoints()
             (activity as DashboardMain).redeemPoints()
         }
     }

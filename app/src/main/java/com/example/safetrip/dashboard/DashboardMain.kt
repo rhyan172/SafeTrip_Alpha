@@ -1,5 +1,6 @@
 package com.example.safetrip
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -121,4 +122,10 @@ class DashboardMain : AppCompatActivity() {
         editor.apply()
     }
 
+    internal fun switchForRedeemPoints(){
+        val sharedPreferences = getSharedPreferences("SWITCH_FARE_POINTS", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putBoolean("SFP", false)
+        editor.apply()
+    }
 }

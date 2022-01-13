@@ -19,7 +19,7 @@ import com.google.firebase.database.FirebaseDatabase
 class LogInMain : AppCompatActivity() {
 
     lateinit var ref : DatabaseReference
-    lateinit var LoginPhone: EditText
+    lateinit var loginPhone: EditText
     lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,11 +29,11 @@ class LogInMain : AppCompatActivity() {
 
         ref = FirebaseDatabase.getInstance().getReference("Names")
 
-        LoginPhone = findViewById<EditText>(R.id.logInPhone)
+        loginPhone = findViewById(R.id.logInPhone)
 
         val button = findViewById<Button>(logInBtn)
         button.setOnClickListener {
-            val phoneLogin = LoginPhone.text.toString()
+            val phoneLogin = loginPhone.text.toString()
             if(phoneLogin.isNotEmpty()){
                 login(phoneLogin)
             }
@@ -70,7 +70,7 @@ class LogInMain : AppCompatActivity() {
             if(it.exists()){
                 //get user pin for login use
                 val pnumber = it.child("pnum").value
-                val numberP = LoginPhone.text.toString()
+                val numberP = loginPhone.text.toString()
                 val pn = "+63$numberP"
                     if(pn == pnumber){
                         val pinCode = it.child("pin").value
