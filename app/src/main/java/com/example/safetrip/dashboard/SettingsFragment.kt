@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.safetrip.*
 import com.google.firebase.auth.ktx.auth
@@ -46,12 +47,15 @@ class SettingsFragment:Fragment(R.layout.fragment_settings) {
                         settingPhoneNumber = phnm.toString()
 
                         val fullName = "$settingFirstName $settingLastName"
-                        textViewName.text = fullName
-                        textViewNumber.text = "$settingPhoneNumber"
+                        getView()?.findViewById<TextView>(R.id.textViewName)?.text = fullName
+                        getView()?.findViewById<TextView>(R.id.textViewNumber)?.text = settingPhoneNumber
                     }
                 }
             }
         })
+        val fullName = "$settingFirstName $settingLastName"
+        getView()?.findViewById<TextView>(R.id.textViewName)?.text = fullName
+        getView()?.findViewById<TextView>(R.id.textViewNumber)?.text = settingPhoneNumber
 
         textViewAbout.setOnClickListener {
             val intent = Intent(getActivity(), About::class.java)

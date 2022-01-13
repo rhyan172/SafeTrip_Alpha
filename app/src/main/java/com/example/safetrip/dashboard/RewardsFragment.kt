@@ -43,5 +43,11 @@ class RewardsFragment:Fragment(R.layout.fragment_rewards) {
                 }
             }
         })
+        getView()?.findViewById<TextView>(R.id.textViewPoints)?.text = pointsOfUser
+        redeemRewards.setOnClickListener(){
+            (activity as DashboardMain).getPointsData()
+            (activity as DashboardMain).passDataPoints()
+            (activity as DashboardMain).redeemPoints()
+        }
     }
 }

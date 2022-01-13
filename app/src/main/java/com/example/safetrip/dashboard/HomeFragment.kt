@@ -14,6 +14,7 @@ class HomeFragment:Fragment(R.layout.fragment_home) {
 
     private lateinit var database: DatabaseReference
     private lateinit var preferences: SharedPreferences
+    private var creditHome: String = ""
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -32,13 +33,13 @@ class HomeFragment:Fragment(R.layout.fragment_home) {
                 database.child("Names/$phoneNumberHome").get().addOnSuccessListener {
                     if(it.exists()){
                         val currentCredit = it.child("credits").value
-                        val cH = currentCredit.toString()
-                        var creditHome: String? = cH
+                        creditHome = currentCredit.toString()
                         getView()?.findViewById<TextView>(R.id.textViewWalletHome)?.text = creditHome
                     }
                 }
             }
         })
+        getView()?.findViewById<TextView>(R.id.textViewWalletHome)?.text = creditHome
         rideBtn.setOnClickListener {
             val intent = Intent (activity, ScanPay::class.java)
             activity?.startActivity(intent)

@@ -18,6 +18,7 @@ class PaymentFragment:Fragment(R.layout.fragment_payment) {
 
     private lateinit var database: DatabaseReference
     private lateinit var preferences: SharedPreferences
+    private var paymentCredit: String = ""
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -36,12 +37,13 @@ class PaymentFragment:Fragment(R.layout.fragment_payment) {
                 database.child("Names/$phoneNumberHome").get().addOnSuccessListener {
                     if(it.exists()){
                         val currentCredit = it.child("credits").value
-                        var paymentCredit: String? = currentCredit.toString()
+                        paymentCredit = currentCredit.toString()
                         getView()?.findViewById<TextView>(R.id.textViewWalletPayment)?.text = paymentCredit
                     }
                 }
             }
         })
+        getView()?.findViewById<TextView>(R.id.textViewWalletPayment)?.text = paymentCredit
         gCashBtn.setOnClickListener(){
             val intent = Intent (activity, CashIn::class.java)
             activity?.startActivity(intent)

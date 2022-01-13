@@ -1,5 +1,7 @@
 package com.example.safetrip
 
+import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -9,9 +11,11 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.example.safetrip.dashboard.SafeTripLocation
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.getValue
 import com.google.zxing.integration.android.IntentIntegrator
+import com.google.zxing.integration.android.IntentResult
 import kotlinx.android.synthetic.main.activity_dashboard_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_rewards.*
@@ -21,7 +25,7 @@ class DashboardMain : AppCompatActivity() {
     private lateinit var database: DatabaseReference
     private lateinit var preferences: SharedPreferences
     private var totalUserPoints: Int = 0
-    private var pointsDeduct: Int = 0
+    private var pointsDeduct: Int = 100
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,11 +50,7 @@ class DashboardMain : AppCompatActivity() {
             true
         }
 
-        getPointsData()
 
-        /*redeemRewards.setOnClickListener(){
-            redeemPoints()
-        }*/
     }
 
     private fun setCurrentFragment(fragment: Fragment) =
@@ -58,10 +58,10 @@ class DashboardMain : AppCompatActivity() {
             replace(R.id.flFragment, fragment).commit()
         }
 
-    private fun redeemPoints(){
+    internal fun redeemPoints(){
         val sAlertDialogBuilder = AlertDialog.Builder(this)
-        sAlertDialogBuilder.setTitle("Payment Confirmation")
-        sAlertDialogBuilder.setMessage("Please Confirm your Payment")
+        sAlertDialogBuilder.setTitle("Redeem Rewards")
+        sAlertDialogBuilder.setMessage("Are you sure you want to redeem your rewards?")
         sAlertDialogBuilder.setCancelable(false)
         sAlertDialogBuilder.setPositiveButton("YES") { dialog, id ->
             if(pointsDeduct > totalUserPoints){
@@ -82,8 +82,43 @@ class DashboardMain : AppCompatActivity() {
         sAlertDialog.show()
     }
 
-    private fun getPointsData(){
-
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        val result: IntentResult =
+            IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
+        if (result != null) {
+            if (result.contents == null) {
+                Toast.makeText(this, "Cancelled", Toast.LENGTH_SHORT).show()
+            } else {
+                val sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+                val editor = sharedPreferences.edit()
+                editor.putString("DRIVER_INFORMATION", result.contents)
+                editor.apply()
+                Toast.makeText(this, "Scanned Success", Toast.LENGTH_LONG).show()
+                startActivity(Intent(this, SafeTripLocation::class.java))
+            }
+        }
+        else {
+            super.onActivityResult(requestCode, resultCode, data)
+        }
     }
-}
 
+    internal fun getPointsData(){
+        preferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+        val rewardsPhoneNumber = preferences.getString("PHONE_NUMBER", "NULL")
+        database = FirebaseDatabase.getInstance().reference
+        database.child("Names/$rewardsPhoneNumber").get().addOnSuccessListener {
+            if(it.exists()){
+                val points = it.child("points").value
+                totalUserPoints = points.toString().toInt()
+            }
+        }
+    }
+
+    internal fun passDataPoints(){
+        val sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putInt("POINTS_DEDUCT", pointsDeduct)
+        editor.apply()
+    }
+
+}
