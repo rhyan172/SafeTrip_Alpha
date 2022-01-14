@@ -56,32 +56,45 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         />
+
     <View
         android:layout_width="320dp"
         android:layout_height="1dp"
-        android:background="@color/white"
-        android:layout_below="@id/textView4"
+        android:layout_below="@id/txtPointsDeduction"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        />
+        android:background="@color/white" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/txtPointsDeduction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/textView"
-        android:fontFamily="@font/montserrat_bold"
-        android:textColor="@color/white"
-        android:textSize="25sp"
-        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="70dp"
         android:layout_marginTop="60dp"
-        android:text="100 pts. = 1 Free Ride" />
+        android:fontFamily="@font/montserrat_bold"
+        android:text="100"
+        android:textColor="@color/white"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView"
+        android:layout_alignLeft="@id/txtPointsDeduction"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="pts. = 1 Free Ride"
+        android:textColor="@color/white"
+        android:textSize="25sp" />
 
     <Button
         android:id="@+id/redeemRewards"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textView4"
+        android:layout_below="@id/txtPointsDeduction"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="130dp"
         android:background="@drawable/button"

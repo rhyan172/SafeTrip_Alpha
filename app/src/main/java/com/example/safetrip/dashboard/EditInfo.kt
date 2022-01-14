@@ -2,6 +2,7 @@ package com.example.safetrip
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,11 +15,16 @@ import com.example.safetrip.R
 import com.example.safetrip.SettingsInfo
 import com.google.firebase.database.FirebaseDatabase
 import com.example.safetrip.database_adapter.UserName
+import com.google.firebase.database.DatabaseReference
+import kotlinx.android.synthetic.main.activity_edit_info.*
 
 class EditInfo : AppCompatActivity() {
-    lateinit var updateFName: EditText
-    lateinit var updateLName: EditText
-    lateinit var btnUpdate: Button
+    private var updateFName: String = ""
+    private var updateLName: String = ""
+    private var updateEmail: String = ""
+
+    private lateinit var btnUpdate: Button
+    private lateinit var preferences: SharedPreferences
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,49 +32,48 @@ class EditInfo : AppCompatActivity() {
         setContentView(R.layout.activity_edit_info)
         window.statusBarColor = ContextCompat.getColor(this, R.color.status_bar)
 
-        updateFName = findViewById(R.id.editFirstName)
-        updateLName = findViewById(R.id.editLastName)
+        fetchData()
 
         btnUpdate = findViewById(R.id.updateInfo)
         btnUpdate.setOnClickListener {
             updateInfo()
-            startActivity(Intent(this, SettingsInfo::class.java))
+            finish()
         }
     }
 
     private fun updateInfo(){
-        val preferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+        preferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
         val phonenumber = preferences.getString("PHONE_NUMBER", "NULL").toString()
-        val point = preferences.getInt("POINTS", 0)
-        val credit = preferences.getInt("CREDIT", 0)
-        val email = preferences.getString("EMAIL", "NULL").toString()
-        val pin = preferences.getString("PIN", "NULL").toString()
 
-        val firstname = updateFName.text.toString().trim()
-        val lastname = updateLName.text.toString().trim()
+        val updatedFName = editFirstName.text.toString()
+        val updatedLName = editLastName.text.toString()
+        val updatedEmail = editEmail.text.toString()
 
-        if(firstname.isEmpty())
-        {
-            Toast.makeText(this, "Please enter first name", Toast.LENGTH_SHORT).show()
-        }
-        if(lastname.isEmpty())
-        {
-            Toast.makeText(this, "Please enter last name", Toast.LENGTH_SHORT).show()
-        }
-        else
-        {
-            val sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
-            val editor = sharedPreferences.edit()
-            editor.putString("FIRST_NAME", firstname)
-            editor.putString("LAST_NAME", lastname)
-            editor.apply()
+        val database = FirebaseDatabase.getInstance().reference
+        database.child("Names/$phonenumber/first").setValue(updatedFName)
+        database.child("Names/$phonenumber/last").setValue(updatedLName)
+        database.child("Names/$phonenumber/email").setValue(updatedEmail)
+        Toast.makeText(this, "updating information success", Toast.LENGTH_SHORT).show()
+    }
 
-            val ref = FirebaseDatabase.getInstance().getReference("Names")
-            val nameKey = ref.push().key
+    private fun fetchData(){
+        preferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+        val phonenumber = preferences.getString("PHONE_NUMBER", "NULL").toString()
+        val database = FirebaseDatabase.getInstance().reference
+        database.child("Names/$phonenumber").get().addOnSuccessListener {
+            if(it.exists())
+            {
+                val fName = it.child("first").value
+                val lName = it.child("last").value
+                val eMail = it.child("email").value
 
-            val updatedName = UserName(nameKey, firstname, lastname, pin, phonenumber, email, credit, point)
-            ref.child(phonenumber).setValue(updatedName).addOnSuccessListener {
-                Toast.makeText(this, "Update Success", Toast.LENGTH_SHORT).show()
+                updateFName = fName.toString()
+                updateLName = lName.toString()
+                updateEmail = eMail.toString()
+
+                editFirstName.setText(updateFName)
+                editLastName.setText(updateLName)
+                editEmail.setText(updateEmail)
             }
         }
     }

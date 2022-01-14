@@ -18,6 +18,7 @@ class RewardsFragment:Fragment(R.layout.fragment_rewards) {
     private lateinit var database: DatabaseReference
     private lateinit var preferences: SharedPreferences
     private var pointsOfUser: String = ""
+    private var pointsDeduction: String = ""
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -36,18 +37,26 @@ class RewardsFragment:Fragment(R.layout.fragment_rewards) {
                 database = FirebaseDatabase.getInstance().reference
                 database.child("Names/$phoneNumberHome").get().addOnSuccessListener {
                     if(it.exists()){
-                        val currentPoints: Any? = it.child("points").value
+                        val currentPoints = it.child("points").value
                         pointsOfUser = currentPoints.toString()
                         getView()?.findViewById<TextView>(R.id.textViewPoints)?.text = pointsOfUser
                     }
+                }
+                database.child("Fare").get().addOnSuccessListener {
+                    val pointDeduction = it.child("reward").value
+                    pointsDeduction = pointDeduction.toString()
+
+                    txtPointsDeduction.text= pointsDeduction
                 }
             }
         })
         getView()?.findViewById<TextView>(R.id.textViewPoints)?.text = pointsOfUser
         redeemRewards.setOnClickListener(){
+            val sharedPreferences = requireActivity().getSharedPreferences("SWITCH_FARE_POINTS", Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.putBoolean("SFP", false)
+            editor.apply()
             (activity as DashboardMain).getPointsData()
-            (activity as DashboardMain).passDataPoints()
-            (activity as DashboardMain).switchForRedeemPoints()
             (activity as DashboardMain).redeemPoints()
         }
     }

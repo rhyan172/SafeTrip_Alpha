@@ -26,7 +26,7 @@ class DashboardMain : AppCompatActivity() {
     private lateinit var database: DatabaseReference
     private lateinit var preferences: SharedPreferences
     private var totalUserPoints: Int = 0
-    private var pointsDeduct: Int = 100
+    private var pointsDeduct: Int = 0
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -113,19 +113,16 @@ class DashboardMain : AppCompatActivity() {
                 totalUserPoints = points.toString().toInt()
             }
         }
-    }
+        database.child("Fare").get().addOnSuccessListener {
+            if(it.exists()){
+                val points = it.child("reward").value
+                pointsDeduct = points.toString().toInt()
 
-    internal fun passDataPoints(){
-        val sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putInt("POINTS_DEDUCT", pointsDeduct)
-        editor.apply()
-    }
-
-    internal fun switchForRedeemPoints(){
-        val sharedPreferences = getSharedPreferences("SWITCH_FARE_POINTS", Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putBoolean("SFP", false)
-        editor.apply()
+                val sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+                val editor = sharedPreferences.edit()
+                editor.putInt("POINTS_DEDUCT", points.toString().toInt())
+                editor.apply()
+            }
+        }
     }
 }

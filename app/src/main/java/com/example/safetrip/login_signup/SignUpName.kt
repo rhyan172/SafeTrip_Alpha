@@ -74,7 +74,7 @@ class SignUpName : AppCompatActivity() {
         val firstName = editFirstName.text.toString().trim()
         val lastName = editLastName.text.toString().trim()
         val email = editEmail.text.toString().trim()
-        val credit = 0
+        val credit = "0.00"
         val point = 0
 
         preferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)

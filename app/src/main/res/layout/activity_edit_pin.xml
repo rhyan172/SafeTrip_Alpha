@@ -58,10 +58,10 @@
         android:layout_below="@id/editPin"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:textSize="15sp"
-        android:fontFamily="@font/montserrat_bold"
         android:background="@drawable/button"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="NEXT"
         android:textColor="@color/white"
-        android:text="NEXT" />
+        android:textSize="15sp" />
 
 </RelativeLayout>

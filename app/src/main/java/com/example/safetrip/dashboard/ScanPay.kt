@@ -22,9 +22,12 @@ class ScanPay : AppCompatActivity() {
 
     private lateinit var fare: TextView
     private lateinit var database: DatabaseReference
-    private var totalAmount: Int = 0
+    private var totalAmount: Float = 0.00F
     private lateinit var preferences: SharedPreferences
-    private var scanPayCredit: Int = 0
+    private var scanPayCredit: Float = 0.00F
+    private var earnedP: Int = 0
+    private var pointsFromDB: Int = 0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +37,10 @@ class ScanPay : AppCompatActivity() {
         fare = findViewById(R.id.textViewTotal)
 
         var increment = 1
-        var farePay = 0
+        var farePay = 0.00F
+
+        earnedP = numPassenger.getText().toString().toInt()
+
 
         preferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
         val phoneNumScanPay = preferences.getString("PHONE_NUMBER", "NULL")
@@ -43,15 +49,23 @@ class ScanPay : AppCompatActivity() {
             if(it.exists())
             {
                 val price = it.child("price").value
-                farePay = price.toString().toInt()
+                farePay = price.toString().toFloat()
                 fare.text = price.toString()
+
             }
         }
         database.child("Names/$phoneNumScanPay").get().addOnSuccessListener {
             if(it.exists())
             {
                 val scanPayCred = it.child("credits").value
-                scanPayCredit = scanPayCred.toString().toInt()
+                scanPayCredit = scanPayCred.toString().toFloat()
+            }
+        }
+        database.child("Points").get().addOnSuccessListener {
+            if(it.exists())
+            {
+                val pointsAdd = it.child("ePoints").value
+                pointsFromDB = pointsAdd.toString().toInt()
             }
         }
 
@@ -102,6 +116,7 @@ class ScanPay : AppCompatActivity() {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_SHORT).show()
             } else {
                 passData()
+                switchForFare()
                 val sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
                 val editor = sharedPreferences.edit()
                 editor.putString("DRIVER_INFORMATION", result.contents)
@@ -118,8 +133,18 @@ class ScanPay : AppCompatActivity() {
     private fun passData(){
         val sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
-        val fareTotal = fare.text.toString().toInt()
-        editor.putInt("FARE_TOTAL", fareTotal)
+        val fareTotal = fare.text.toString().toFloat()
+        val totalPasenger = numPassenger.getText().toString().toInt()
+        val totalPointsEarned = totalPasenger * pointsFromDB
+        editor.putFloat("FARE_TOTAL", fareTotal)
+        editor.putInt("POINTS_EARNED", totalPointsEarned)
+        editor.apply()
+    }
+
+    private fun switchForFare(){
+        val sharedPreferences = getSharedPreferences("SWITCH_FARE_POINTS", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putBoolean("SFP", true)
         editor.apply()
     }
 }

@@ -49,24 +49,13 @@
         android:layout_marginTop="15dp"
         />
 
-    <TextView
-        android:id="@+id/txtEditNum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat_bold"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:layout_below="@id/txtEditInfo"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="30dp"
-        android:clickable="true"
-        android:text="Edit mobile number" />
+
 
     <View
         android:layout_width="330dp"
         android:layout_height="1dp"
         android:background="@color/white"
-        android:layout_below="@id/txtEditNum"
+        android:layout_below="@id/txtEditPin"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         />
@@ -78,7 +67,7 @@
         android:fontFamily="@font/montserrat_bold"
         android:textColor="@color/white"
         android:textSize="20sp"
-        android:layout_below="@id/txtEditNum"
+        android:layout_below="@id/txtEditInfo"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="30dp"
         android:clickable="true"

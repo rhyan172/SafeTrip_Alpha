@@ -18,13 +18,49 @@
         android:layout_marginTop="50dp"
         android:text="EDIT YOUR INFO" />
 
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_bold"
+        android:layout_below="@id/textView8"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="55dp"
+        android:text="First Name" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_bold"
+        android:layout_below="@id/editFirstName"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="55dp"
+        android:text="Last Name" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_bold"
+        android:layout_below="@id/editLastName"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="55dp"
+        android:text="Email" />
+
     <EditText
         android:id="@+id/editFirstName"
         android:layout_width="325dp"
         android:layout_height="50dp"
         android:layout_below="@id/textView8"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/text_main"
         android:ems="10"
         android:fontFamily="@font/montserrat_regular"
@@ -39,7 +75,7 @@
         android:layout_height="50dp"
         android:layout_below="@id/editFirstName"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/text_main"
         android:ems="10"
         android:fontFamily="@font/montserrat_regular"
@@ -48,11 +84,26 @@
         android:textColor="@color/white"
         android:textColorHint="#7f7f7f" />
 
+    <EditText
+        android:id="@+id/editEmail"
+        android:layout_width="325dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/editLastName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp"
+        android:background="@drawable/text_main"
+        android:ems="10"
+        android:fontFamily="@font/montserrat_regular"
+        android:hint="Email"
+        android:paddingLeft="20dp"
+        android:textColor="@color/white"
+        android:textColorHint="#7f7f7f" />
+
     <Button
         android:id="@+id/updateInfo"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editLastName"
+        android:layout_below="@id/editEmail"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:background="@drawable/button"

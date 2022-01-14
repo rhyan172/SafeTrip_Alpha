@@ -12,5 +12,5 @@
         android:layout_height="200dp"
         android:layout_weight="1"
         android:layout_marginTop="250dp"
-        app:srcCompat="@drawable/logo_safetrip" />
+        app:srcCompat="@mipmap/logo_safetrip" />
 </LinearLayout>

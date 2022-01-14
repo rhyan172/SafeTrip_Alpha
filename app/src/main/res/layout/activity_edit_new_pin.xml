@@ -52,7 +52,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
-        android:id="@+id/newPinBtn"
+        android:id="@+id/btnNewPin"
         android:layout_width="315dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/editNewPin"

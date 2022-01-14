@@ -26,14 +26,17 @@ class SettingsFragment:Fragment(R.layout.fragment_settings) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        preferences = requireActivity().getSharedPreferences("SHARED_PREF", AppCompatActivity.MODE_PRIVATE)
+
         database = FirebaseDatabase.getInstance().getReference("Names")
         database.addValueEventListener(object: ValueEventListener {
+
             override fun onCancelled(error: DatabaseError) {
 
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                preferences = requireActivity().getSharedPreferences("SHARED_PREF", AppCompatActivity.MODE_PRIVATE)
+
                 val phoneNumberHome = preferences.getString("PHONE_NUMBER", "NULL")
                 database = FirebaseDatabase.getInstance().reference
                 database.child("Names/$phoneNumberHome").get().addOnSuccessListener {
@@ -82,9 +85,11 @@ class SettingsFragment:Fragment(R.layout.fragment_settings) {
             val intent = Intent(getActivity(), LoginSignup::class.java)
             val editor = sharedPreferences.edit()
             editor.putBoolean("ONE_TIME", false)
+            editor.putBoolean("SWITCH_KEY", false)
             editor.apply()
             Firebase.auth.signOut()
             startActivity(intent)
+            requireActivity().finish()
         }
     }
 }

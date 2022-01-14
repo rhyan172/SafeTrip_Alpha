@@ -5,9 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import com.example.safetrip.EditInfo
-import com.example.safetrip.EditNum
-import com.example.safetrip.EditPin
 
 class SettingsInfo : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,12 +15,6 @@ class SettingsInfo : AppCompatActivity() {
         val txtNameEdit = findViewById<TextView>(R.id.txtEditInfo)
         txtNameEdit.setOnClickListener {
             val intent = Intent(this, EditInfo::class.java)
-            startActivity(intent)
-        }
-
-        val txtNumEdit = findViewById<TextView>(R.id.txtEditNum)
-        txtNumEdit.setOnClickListener {
-            val intent = Intent(this, EditNum::class.java)
             startActivity(intent)
         }
 

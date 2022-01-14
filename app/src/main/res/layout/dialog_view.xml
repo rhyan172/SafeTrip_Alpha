@@ -17,7 +17,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_centerHorizontal="true"
-        app:srcCompat="@drawable/check" />
+        app:srcCompat="@mipmap/check" />
 
     <TextView
         android:id="@+id/textView"

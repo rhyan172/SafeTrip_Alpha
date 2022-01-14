@@ -126,7 +126,7 @@
             android:screenOrientation="fullSensor"
             tools:replace="screenOrientation" />
         <activity
-            android:name=".dashboard.ConfirmAct"
+            android:name=".dashboard.RideComplete"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <!-- for maps -->

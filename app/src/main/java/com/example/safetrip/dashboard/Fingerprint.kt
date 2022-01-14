@@ -35,7 +35,11 @@ class Fingerprint : AppCompatActivity() {
 
             override fun onAuthenticationSucceeded(result: androidx.biometric.BiometricPrompt.AuthenticationResult) {
                 super.onAuthenticationSucceeded(result)
-                startActivity(Intent(applicationContext, DashboardMain::class.java))
+                val sharedPreferences = getSharedPreferences("SHARED_PREF", MODE_PRIVATE)
+                val editor = sharedPreferences.edit()
+                editor.putBoolean("SWITCH_KEY", true)
+                editor.apply()
+                Toast.makeText(applicationContext, "Fingerprint Enabled", Toast.LENGTH_SHORT).show()
             }
 
             override fun onAuthenticationFailed() {
@@ -50,17 +54,14 @@ class Fingerprint : AppCompatActivity() {
             .setNegativeButtonText("Cancel")
             .build()
 
+
         val sharedPreferences = getSharedPreferences("SHARED_PREF", MODE_PRIVATE)
         val editor = sharedPreferences.edit()
-
         fingerSwitch = findViewById(R.id.finger_print_Switch)
         fingerSwitch.isChecked = sharedPreferences.getBoolean("SWITCH_KEY", false)
         fingerSwitch.setOnCheckedChangeListener{ _, isChecked ->
             if(isChecked){
                 biometricPrompt.authenticate(promptInfo)
-                editor.putBoolean("SWITCH_KEY", true)
-                editor.apply()
-                Toast.makeText(applicationContext, "Fingerprint Enabled", Toast.LENGTH_SHORT).show()
             }
             else{
                 editor.putBoolean("SWITCH_KEY", false)

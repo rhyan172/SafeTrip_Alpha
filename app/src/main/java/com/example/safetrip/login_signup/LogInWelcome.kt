@@ -18,18 +18,22 @@ import com.example.safetrip.R
 import com.example.safetrip.R.layout.activity_log_in_welcome
 import com.example.safetrip.DashboardMain
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import java.util.concurrent.Executor
 
 class LogInWelcome : AppCompatActivity() {
 
-    lateinit var preferences: SharedPreferences
-    lateinit var reference: DatabaseReference
+    private lateinit var preferences: SharedPreferences
+    private lateinit var database: DatabaseReference
 
-    lateinit var btnFingerprint: ImageView
+    private lateinit var btnFingerprint: ImageView
 
-    lateinit var executor: Executor
-    lateinit var biometricPrompt: androidx.biometric.BiometricPrompt
-    lateinit var promptInfo: androidx.biometric.BiometricPrompt.PromptInfo
+    private lateinit var executor: Executor
+    private lateinit var biometricPrompt: androidx.biometric.BiometricPrompt
+    private lateinit var promptInfo: androidx.biometric.BiometricPrompt.PromptInfo
+    private var userPin: String = ""
+    private var FirstName: String = ""
+    private var LastName: String = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,15 +72,10 @@ class LogInWelcome : AppCompatActivity() {
             biometricPrompt.authenticate(promptInfo)
         }
 
+        getUserPin()
 
         val pincode = findViewById<PinView>(R.id.pin_login_view)
 
-        val FirstName = preferences.getString("FIRST_NAME", "NULL").toString()
-        val LastName = preferences.getString("LAST_NAME", "NULL").toString()
-
-
-        val fullName = findViewById<TextView>(R.id.textViewN)
-        fullName.text = "$FirstName $LastName"
         pincode.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
@@ -90,8 +89,7 @@ class LogInWelcome : AppCompatActivity() {
                 val pinval = pincode.text.toString()
                 if(pinval.length == 4){
                     val pin = pincode.text.toString().trim()
-                    val enteredPhoneNumber = preferences.getString("PIN", "NULL").toString()
-                    if(pin == enteredPhoneNumber){
+                    if(pin == userPin){
                         startActivity(Intent(applicationContext, DashboardMain::class.java))
                         finish()
                     }
@@ -111,10 +109,29 @@ class LogInWelcome : AppCompatActivity() {
         if(fingerCheck == true){
             imgFinger.visibility = View.VISIBLE
             txtTouch.visibility = View.VISIBLE
+            biometricPrompt.authenticate(promptInfo)
         }
         else{
             imgFinger.visibility = View.GONE
             txtTouch.visibility = View.GONE
+        }
+    }
+
+    private fun getUserPin(){
+        val phoneNumberLogin = preferences.getString("PHONE_NUMBER", "NULL").toString()
+        val database = FirebaseDatabase.getInstance().reference
+        database.child("Names/$phoneNumberLogin").get().addOnSuccessListener {
+            if(it.exists())
+            {
+                val currentUserP = it.child("pin").value
+                userPin = currentUserP.toString()
+                val fname = it.child("first").value
+                val lname = it.child("last").value
+                FirstName = fname.toString()
+                LastName = lname.toString()
+                val fullName = findViewById<TextView>(R.id.textViewN)
+                fullName.text = "$FirstName $LastName"
+            }
         }
     }
 }

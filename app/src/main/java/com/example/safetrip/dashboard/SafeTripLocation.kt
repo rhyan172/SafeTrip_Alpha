@@ -35,11 +35,7 @@ class SafeTripLocation : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMa
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var preferences: SharedPreferences
     private lateinit var database: DatabaseReference
-    private var currentCreditUser: Int = 0
-    private var currentUserPoints: Int = 0
-    private var driverN: String = ""
-    private var driverPN: String = ""
-    private var driverP: String = ""
+
 
     companion object{
         private const val LOCATION_REQUEST_CODE = 1
@@ -62,55 +58,24 @@ class SafeTripLocation : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMa
 
         preferences = getSharedPreferences("SHARED_PREF", MODE_PRIVATE)
         val driverInfo = preferences.getString("DRIVER_INFORMATION", "NULL").toString()
-        val pnc = preferences.getString("PHONE_NUMBER", "NULL")
-        val payTotalFare = preferences.getInt("FARE_TOTAL", 0)
-        val payPoints = preferences.getInt("POINTS_TOTAL", 0)
 
         database = FirebaseDatabase.getInstance().reference
-        database.child("Names/$pnc").get().addOnSuccessListener {
-            if(it.exists()){
-                val currentBal = it.child("credits").value
-                currentCreditUser = currentBal.toString().toInt()
-
-                val currentPoints = it.child("points").value
-                currentUserPoints = currentPoints.toString().toInt()
-            }
-        }
         database.child("Driver/$driverInfo").get().addOnSuccessListener {
             if(it.exists()){
                 val driverName = it.child("driverName").value
                 val driverPlate = it.child("driverPlate").value
                 val driverNumber = it.child("driverNumber").value
 
-                driverN = driverName.toString()
-                driverPN = driverPlate.toString()
-                driverP = driverNumber.toString()
+                txtDriverName.text = driverName.toString()
+                txtDriverPlate.text = driverPlate.toString()
+                txtDriverNum.text = driverNumber.toString()
             }
         }
 
-        txtDriver.text = driverInfo
-
         val btnDrop = findViewById<Button>(R.id.btnDrop)
-
         btnDrop.setOnClickListener()
         {
-            preferences = getSharedPreferences("SWITCH_FARE_POINTS", Context.MODE_PRIVATE)
-            val sfp = preferences.getBoolean("SRP", true)
-
-            if(sfp == true) {
-                val updateCredit = currentCreditUser - payTotalFare
-                val database = FirebaseDatabase.getInstance().reference
-                database.child("Names/$pnc/credits").setValue(updateCredit)
-                startActivity(Intent(this, DashboardMain::class.java))
-                finish()
-            }
-            else if(sfp == false){
-                val updatePoints = currentUserPoints - payPoints
-                val database = FirebaseDatabase.getInstance().reference
-                database.child("Names/$pnc/points").setValue(updatePoints)
-                startActivity(Intent(this, DashboardMain::class.java))
-                finish()
-            }
+            startActivity(Intent(this, RideComplete::class.java))
         }
     }
 

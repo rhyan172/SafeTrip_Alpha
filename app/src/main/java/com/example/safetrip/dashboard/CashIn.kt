@@ -99,9 +99,9 @@ class CashIn : AppCompatActivity() {
     {
         val preferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
         val phonenumber = preferences.getString("PHONE_NUMBER", "NULL").toString()
-        val incash = payAmount.text.toString().toInt()
+        val incash = payAmount.text.toString().toFloat()
 
-        var sum = incash + currentCredit.toInt()
+        var sum = incash + currentCredit.toFloat()
 
         val ref = FirebaseDatabase.getInstance().getReference()
         ref.child("Names/$phonenumber/credits").setValue(sum.toString())

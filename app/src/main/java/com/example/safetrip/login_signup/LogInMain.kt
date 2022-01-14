@@ -18,74 +18,46 @@ import com.google.firebase.database.FirebaseDatabase
 
 class LogInMain : AppCompatActivity() {
 
-    lateinit var ref : DatabaseReference
-    lateinit var loginPhone: EditText
-    lateinit var sharedPreferences: SharedPreferences
+    private lateinit var database: DatabaseReference
+    private lateinit var loginPhone: EditText
+    private lateinit var sharedPreferences: SharedPreferences
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(activity_log_in_main)
         window.statusBarColor = ContextCompat.getColor(this, R.color.status_bar)
 
-        ref = FirebaseDatabase.getInstance().getReference("Names")
 
         loginPhone = findViewById(R.id.logInPhone)
+        sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
 
-        val button = findViewById<Button>(logInBtn)
-        button.setOnClickListener {
-            val phoneLogin = loginPhone.text.toString()
-            if(phoneLogin.isNotEmpty()){
-                login(phoneLogin)
-            }
-            else
-            {
-                Toast.makeText(this, "Phone number is empty", Toast.LENGTH_SHORT).show()
+
+        val btnLogin = findViewById<Button>(logInBtn)
+        btnLogin.setOnClickListener {
+            val checkPhoneNum = loginPhone.text.toString()
+            database = FirebaseDatabase.getInstance().reference
+            database.child("Names/+63$checkPhoneNum").get().addOnSuccessListener {
+                if(it.exists())
+                {
+                    val pnumber = it.child("pnum").value
+                    val numberP = pnumber.toString()
+                    val editor = sharedPreferences.edit()
+                    editor.putString("PHONE_NUMBER", numberP)
+                    editor.apply()
+                    login()
+                }
+                else{
+                    Toast.makeText(this, "User doesn't Exist", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
 
-    private fun login(phoneLogin: String) {
-        ref = FirebaseDatabase.getInstance().getReference("Names")
-        ref.child("+63$phoneLogin").get().addOnSuccessListener {
-            sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
-            val pnumber = it.child("pnum").value
-            val numberP = pnumber.toString()
-            val editor = sharedPreferences.edit()
-            editor.putString("PHONE_NUMBER", numberP)
-            //get user name
-            val fName = it.child("first").value
-            val lName = it.child("last").value
-            //for settings
-            val FName = fName.toString()
-            val LName = lName.toString()
-            editor.putString("FIRST_NAME", FName)
-            editor.putString("LAST_NAME", LName)
-            //for getting email and credits
-            val dEmail = it.child("email").value
-            //for update data
-            val DEmail = dEmail.toString()
-            editor.putString("EMAIL", DEmail)
-            editor.apply()
-
-            if(it.exists()){
-                //get user pin for login use
-                val pnumber = it.child("pnum").value
-                val numberP = loginPhone.text.toString()
-                val pn = "+63$numberP"
-                    if(pn == pnumber){
-                        val pinCode = it.child("pin").value
-                        val pc = pinCode.toString()
-                        val editor = sharedPreferences.edit()
-                        editor.putString("PIN", pc)
-                        editor.apply()
-                        val intent = Intent(this, LogInWelcome::class.java)
-                        startActivity(intent)
-                    }
-            }
-            else
-            {
-                Toast.makeText(this, "User doesn't exist", Toast.LENGTH_SHORT).show()
-            }
-        }
+    private fun login() {
+        val intent = Intent(this, LogInWelcome::class.java)
+        startActivity(intent)
     }
 }
+
