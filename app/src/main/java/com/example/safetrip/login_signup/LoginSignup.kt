@@ -46,8 +46,4 @@ class LoginSignup : AppCompatActivity() {
             startActivity(intent)
         }
     }
-
-    private fun CheckUser(){
-
-    }
 }
