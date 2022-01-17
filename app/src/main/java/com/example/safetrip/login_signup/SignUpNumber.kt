@@ -27,15 +27,14 @@ class SignUpNumber : AppCompatActivity() {
     private lateinit var callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
     lateinit var phone: EditText
     lateinit var sharedPreferences: SharedPreferences
-    lateinit var reference: DatabaseReference
-    lateinit var mobilenumber: EditText
+    lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         auth = FirebaseAuth.getInstance()
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up_number)
-        phone = findViewById<EditText>(R.id.phoneNumber)
+        phone = findViewById(R.id.phoneNumber)
 
         window.statusBarColor = ContextCompat.getColor(this, R.color.status_bar)
 
@@ -58,7 +57,7 @@ class SignUpNumber : AppCompatActivity() {
                 Log.d("TAG", "onCodeSent:$verificationId")
                 storedVerificationId = verificationId
                 resendToken = token
-                var intent = Intent(applicationContext, SignUpCode::class.java)
+                val intent = Intent(applicationContext, SignUpCode::class.java)
                 intent.putExtra("storedVerificationId", storedVerificationId)
                 startActivity(intent)
             }
@@ -66,26 +65,40 @@ class SignUpNumber : AppCompatActivity() {
 
         val sign = findViewById<Button>(R.id.phoneNext)
         sign.setOnClickListener {
-            val phn = phone.text.toString()
-            sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
-            val editor = sharedPreferences.edit()
-            editor.putString("PHONE_NUMBER", phn)
-            editor.apply()
             signUp()
-            val intent = Intent(this, SignUpCode::class.java)
-            startActivity(intent)
         }
     }
 
     private fun signUp() {
         val mobileNumber = findViewById<EditText>(R.id.phoneNumber)
-        var number = mobileNumber.text.toString().trim()
-
-        if (!number.isEmpty()) {
-            number = "+63" + number
-            sendVerificationcode(number)
-        } else {
-            Toast.makeText(this, "Enter mobile number", Toast.LENGTH_SHORT).show()
+        var number = mobileNumber.text.toString()
+        database = FirebaseDatabase.getInstance().reference
+        database.child("Names/+63$number").get().addOnSuccessListener{
+            if(it.exists()){
+                if(!number.isEmpty()){
+                    sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+                    val editor = sharedPreferences.edit()
+                    val pnumber = it.child("pnum").value
+                    val numberP = pnumber.toString()
+                    editor.putString("PHONE_NUMBER", numberP)
+                    editor.apply()
+                    startActivity(Intent(this, LogInWelcome::class.java))
+                }
+            }
+            else{
+                if (!number.isEmpty()) {
+                    sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+                    val editor = sharedPreferences.edit()
+                    editor.putString("PHONE_NUMBER", number)
+                    editor.apply()
+                    number = "+63" + number
+                    sendVerificationcode(number)
+                    val intent = Intent(this, SignUpCode::class.java)
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(this, "Enter mobile number", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 

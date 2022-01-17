@@ -19,6 +19,7 @@ import com.example.safetrip.R.layout.activity_log_in_welcome
 import com.example.safetrip.DashboardMain
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.activity_log_in_welcome.*
 import java.util.concurrent.Executor
 
 class LogInWelcome : AppCompatActivity() {
@@ -41,7 +42,7 @@ class LogInWelcome : AppCompatActivity() {
         setContentView(activity_log_in_welcome)
         window.statusBarColor = ContextCompat.getColor(this, R.color.status_bar)
 
-        preferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+        getUserPin()
 
         btnFingerprint = findViewById(R.id.finger_print)
         executor = ContextCompat.getMainExecutor(this)
@@ -72,7 +73,7 @@ class LogInWelcome : AppCompatActivity() {
             biometricPrompt.authenticate(promptInfo)
         }
 
-        getUserPin()
+
 
         val pincode = findViewById<PinView>(R.id.pin_login_view)
 
@@ -96,6 +97,7 @@ class LogInWelcome : AppCompatActivity() {
                     else
                     {
                         Toast.makeText(applicationContext, "Incorrect Pin", Toast.LENGTH_SHORT).show()
+                        pincode.text?.clear()
                     }
                 }
             }
@@ -118,19 +120,21 @@ class LogInWelcome : AppCompatActivity() {
     }
 
     private fun getUserPin(){
-        val phoneNumberLogin = preferences.getString("PHONE_NUMBER", "NULL").toString()
-        val database = FirebaseDatabase.getInstance().reference
-        database.child("Names/$phoneNumberLogin").get().addOnSuccessListener {
-            if(it.exists())
-            {
-                val currentUserP = it.child("pin").value
-                userPin = currentUserP.toString()
+        preferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+        val pln = preferences.getString("PHONE_NUMBER", "NULL").toString()
+        database = FirebaseDatabase.getInstance().reference
+        database.child("Names/$pln").get().addOnSuccessListener {
+            if(it.exists()){
                 val fname = it.child("first").value
                 val lname = it.child("last").value
+                val pin = it.child("pin").value
+
+                userPin = pin.toString()
                 FirstName = fname.toString()
                 LastName = lname.toString()
-                val fullName = findViewById<TextView>(R.id.textViewN)
-                fullName.text = "$FirstName $LastName"
+
+                var fullName = "$FirstName $LastName"
+                textViewN.text = fullName
             }
         }
     }

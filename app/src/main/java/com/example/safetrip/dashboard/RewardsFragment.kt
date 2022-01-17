@@ -17,8 +17,8 @@ class RewardsFragment:Fragment(R.layout.fragment_rewards) {
 
     private lateinit var database: DatabaseReference
     private lateinit var preferences: SharedPreferences
-    private var pointsOfUser: String = ""
-    private var pointsDeduction: String = ""
+    private var pointsOfUser: String = "0"
+    private var pointsDeduction: String = "0"
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

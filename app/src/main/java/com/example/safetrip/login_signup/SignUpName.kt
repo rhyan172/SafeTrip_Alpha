@@ -20,12 +20,12 @@ import kotlinx.android.synthetic.main.dialog_view.view.*
 
 
 class SignUpName : AppCompatActivity() {
-    lateinit var auth: FirebaseAuth
-    lateinit var editFirstName: EditText
-    lateinit var editLastName: EditText
-    lateinit var editEmail: EditText
-    lateinit var nameSave: Button
-    lateinit var preferences: SharedPreferences
+    private lateinit var auth: FirebaseAuth
+    private lateinit var editFirstName: EditText
+    private lateinit var editLastName: EditText
+    private lateinit var editEmail: EditText
+    private lateinit var nameSave: Button
+    private lateinit var preferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,24 +47,36 @@ class SignUpName : AppCompatActivity() {
 
         nameSave.setOnClickListener()
         {
-            saveName()
-            val alertViewDialog = View.inflate(this, R.layout.dialog_view, null)
+            val firstName = editFirstName.text.toString().trim()
+            val lastName = editLastName.text.toString().trim()
 
-            val builder = AlertDialog.Builder(this)
-            builder.setView(alertViewDialog)
-
-
-            val dialog = builder.create()
-            dialog.show()
-            dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-            dialog.setCancelable(false)
-
-            alertViewDialog.ok_Btn.setOnClickListener()
+            if (firstName.isEmpty())
             {
+                Toast.makeText(this, "Please enter First Name", Toast.LENGTH_SHORT).show()
+            }
+            if (lastName.isEmpty())
+            {
+                Toast.makeText(this, "Please enter Last Name", Toast.LENGTH_SHORT).show()
+            }
+            else{
                 saveName()
-                val intent = Intent(this, LogInMain::class.java)
-                startActivity(intent)
-                dialog.dismiss()
+                val alertViewDialog = View.inflate(this, R.layout.dialog_view, null)
+
+                val builder = AlertDialog.Builder(this)
+                builder.setView(alertViewDialog)
+
+                val dialog = builder.create()
+                dialog.show()
+                dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+                dialog.setCancelable(false)
+
+                alertViewDialog.ok_Btn.setOnClickListener()
+                {
+                    saveName()
+                    val intent = Intent(this, LogInMain::class.java)
+                    startActivity(intent)
+                    dialog.dismiss()
+                }
             }
         }
 
@@ -81,28 +93,12 @@ class SignUpName : AppCompatActivity() {
         val numberPhone = preferences.getString("PHONE_NUMBER", "NULL").toString()
         val pincode = preferences.getString("CONFIRM_PIN_CODE", "NULL").toString()
 
-        if(email.isEmpty())
-        {
-            Toast.makeText(this, "Please enter E-Mail", Toast.LENGTH_SHORT).show()
-        }
-        if (firstName.isEmpty())
-        {
-            Toast.makeText(this, "Please enter First Name", Toast.LENGTH_SHORT).show()
-        }
-        if (lastName.isEmpty())
-        {
-            Toast.makeText(this, "Please enter Last Name", Toast.LENGTH_SHORT).show()
-        }
-        else{
-            val ref = FirebaseDatabase.getInstance().getReference("Names")
-            val nameKey = ref.push().key
 
-            val names = UserName(nameKey, firstName, lastName, pincode, "+63$numberPhone", email, credit, point)
+        val ref = FirebaseDatabase.getInstance().getReference("Names")
+        val nameKey = ref.push().key
 
-            ref.child("+63$numberPhone").setValue(names).addOnCompleteListener {
-                //Toast.makeText(applicationContext,"Name Saved Successfully", Toast.LENGTH_LONG).show()
-            }
-        }
+        val names = UserName(nameKey, firstName, lastName, pincode, "+63$numberPhone", email, credit, point)
 
+        ref.child("+63$numberPhone").setValue(names)
     }
 }

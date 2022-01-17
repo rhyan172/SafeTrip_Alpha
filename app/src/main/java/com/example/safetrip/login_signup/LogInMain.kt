@@ -9,7 +9,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import com.example.safetrip.R
 import com.example.safetrip.R.id.logInBtn
 import com.example.safetrip.R.layout.activity_log_in_main
 import com.google.firebase.database.DatabaseReference
@@ -32,7 +31,6 @@ class LogInMain : AppCompatActivity() {
 
         loginPhone = findViewById(R.id.logInPhone)
         sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
-
 
         val btnLogin = findViewById<Button>(logInBtn)
         btnLogin.setOnClickListener {
