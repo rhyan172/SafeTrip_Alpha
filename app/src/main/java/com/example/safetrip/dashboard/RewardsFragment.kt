@@ -46,7 +46,7 @@ class RewardsFragment:Fragment(R.layout.fragment_rewards) {
                     val pointDeduction = it.child("reward").value
                     pointsDeduction = pointDeduction.toString()
 
-                    txtPointsDeduction.text= pointsDeduction
+                    getView()?.findViewById<TextView>(R.id.txtPointsDeduction)?.text= pointsDeduction
                 }
             }
         })
@@ -56,7 +56,6 @@ class RewardsFragment:Fragment(R.layout.fragment_rewards) {
             val editor = sharedPreferences.edit()
             editor.putBoolean("SFP", false)
             editor.apply()
-            (activity as DashboardMain).getPointsData()
             (activity as DashboardMain).redeemPoints()
         }
     }

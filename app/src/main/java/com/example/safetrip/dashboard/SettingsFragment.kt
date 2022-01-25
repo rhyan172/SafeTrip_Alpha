@@ -79,6 +79,10 @@ class SettingsFragment:Fragment(R.layout.fragment_settings) {
             val intent = Intent(getActivity(), Faqs::class.java)
             getActivity()?.startActivity(intent)
         }
+        textViewRoute.setOnClickListener{
+            val intent = Intent(getActivity(), TransactionHistory::class.java)
+            getActivity()?.startActivity(intent)
+        }
 
         logoutBtn.setOnClickListener {
             val sharedPreferences = requireActivity().getSharedPreferences("ONE_TIME_ACTIVITY", Context.MODE_PRIVATE)

@@ -25,14 +25,16 @@ class DashboardMain : AppCompatActivity() {
 
     private lateinit var database: DatabaseReference
     private lateinit var preferences: SharedPreferences
-    private var totalUserPoints: Int = 0
-    private var pointsDeduct: Int = 0
+    private var currentUserPoints: Int = 0
+    private var payPoints: Int = 0
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard_main)
         window.statusBarColor = ContextCompat.getColor(this, R.color.status_bar)
+
+
 
         val firstFragment = HomeFragment()
         val secondFragment = PaymentFragment()
@@ -50,8 +52,6 @@ class DashboardMain : AppCompatActivity() {
             }
             true
         }
-
-
     }
 
     private fun setCurrentFragment(fragment: Fragment) =
@@ -60,12 +60,30 @@ class DashboardMain : AppCompatActivity() {
         }
 
     internal fun redeemPoints(){
+        preferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+        val pnc = preferences.getString("PHONE_NUMBER", "PHONE-NUMBER").toString()
+
+        database = FirebaseDatabase.getInstance().reference
+        database.child("Names/$pnc").get().addOnSuccessListener {
+            if(it.exists())
+            {
+                val userPoints = it.child("points").value
+                currentUserPoints = userPoints.toString().toInt()
+            }
+        }
+        database.child("Fare").get().addOnSuccessListener {
+            if(it.exists()){
+                val pointsPay = it.child("reward").value
+                payPoints = pointsPay.toString().toInt()
+            }
+        }
+
         val sAlertDialogBuilder = AlertDialog.Builder(this)
         sAlertDialogBuilder.setTitle("Redeem Rewards")
         sAlertDialogBuilder.setMessage("Are you sure you want to redeem your rewards?")
         sAlertDialogBuilder.setCancelable(false)
         sAlertDialogBuilder.setPositiveButton("YES") { dialog, id ->
-            if(pointsDeduct > totalUserPoints){
+            if(currentUserPoints < payPoints){
                 Toast.makeText(this, "Insufficient Points.", Toast.LENGTH_SHORT).show()
             }
             else{
@@ -87,42 +105,38 @@ class DashboardMain : AppCompatActivity() {
         val result: IntentResult =
             IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
         if (result != null) {
-            if (result.contents == null) {
-                Toast.makeText(this, "Cancelled", Toast.LENGTH_SHORT).show()
-            } else {
-                val sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
-                val editor = sharedPreferences.edit()
-                editor.putString("DRIVER_INFORMATION", result.contents)
-                editor.apply()
-                Toast.makeText(this, "Scanned Success", Toast.LENGTH_LONG).show()
-                startActivity(Intent(this, SafeTripLocation::class.java))
+            preferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+            val driverId = result.contents
+            database.child("Driver/$driverId").get().addOnSuccessListener {
+                if (it.exists()) {
+                    val pnc = preferences.getString("PHONE_NUMBER", "PHONE-NUMBER").toString()
+
+                    val pointsEarnedDriver = it.child("driverPointsEarned").value
+                    val ped = pointsEarnedDriver.toString().toFloat()
+
+                    if (result.contents == null) {
+                        Toast.makeText(this, "Cancelled", Toast.LENGTH_SHORT).show()
+                    }
+                    else {
+                        val totalPayPoints = currentUserPoints - payPoints
+                        val earnedPointsDriver = ped + payPoints
+
+
+                        val database = FirebaseDatabase.getInstance().reference
+                        database.child("Names/$pnc/points").setValue(totalPayPoints)
+                        database.child("Driver/$driverId/driverPointsEarned").setValue(earnedPointsDriver)
+
+                        startActivity(Intent(this, SafeTripLocation::class.java))
+                        Toast.makeText(this, "Scanned Success", Toast.LENGTH_LONG).show()
+                        finish()
+                    }
+                } else {
+                    Toast.makeText(this, "Invalid QR Code", Toast.LENGTH_SHORT).show()
+                }
             }
         }
         else {
             super.onActivityResult(requestCode, resultCode, data)
-        }
-    }
-
-    internal fun getPointsData(){
-        preferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
-        val rewardsPhoneNumber = preferences.getString("PHONE_NUMBER", "NULL")
-        database = FirebaseDatabase.getInstance().reference
-        database.child("Names/$rewardsPhoneNumber").get().addOnSuccessListener {
-            if(it.exists()){
-                val points = it.child("points").value
-                totalUserPoints = points.toString().toInt()
-            }
-        }
-        database.child("Fare").get().addOnSuccessListener {
-            if(it.exists()){
-                val points = it.child("reward").value
-                pointsDeduct = points.toString().toInt()
-
-                val sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
-                val editor = sharedPreferences.edit()
-                editor.putInt("POINTS_DEDUCT", points.toString().toInt())
-                editor.apply()
-            }
         }
     }
 }

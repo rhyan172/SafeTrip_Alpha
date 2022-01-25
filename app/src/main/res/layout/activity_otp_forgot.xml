@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#2a7b90"
-    tools:context=".SignUpCode">
+    tools:context=".login_signup.OtpForgot">
 
     <TextView
         android:id="@+id/textView6"
@@ -33,7 +33,7 @@
         android:textSize="15sp" />
 
     <TextView
-        android:id="@+id/txtResendCode"
+        android:id="@+id/textResendCodeOTP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/phoneVerify"
@@ -64,4 +64,5 @@
         app:lineColor="@color/white"
         app:viewType="line"
         tools:ignore="SpeakableTextPresentCheck" />
+
 </RelativeLayout>

@@ -88,6 +88,7 @@ class SignUpName : AppCompatActivity() {
         val email = editEmail.text.toString().trim()
         val credit = "0.00"
         val point = 0
+        val transact = 1
 
         preferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
         val numberPhone = preferences.getString("PHONE_NUMBER", "NULL").toString()
@@ -97,8 +98,8 @@ class SignUpName : AppCompatActivity() {
         val ref = FirebaseDatabase.getInstance().getReference("Names")
         val nameKey = ref.push().key
 
-        val names = UserName(nameKey, firstName, lastName, pincode, "+63$numberPhone", email, credit, point)
+        val names = UserName(nameKey, firstName, lastName, pincode, numberPhone, email, credit, point, transact)
 
-        ref.child("+63$numberPhone").setValue(names)
+        ref.child(numberPhone).setValue(names)
     }
 }

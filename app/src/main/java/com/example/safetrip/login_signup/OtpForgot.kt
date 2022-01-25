@@ -1,36 +1,34 @@
-package com.example.safetrip
+package com.example.safetrip.login_signup
 
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import kotlinx.android.synthetic.main.activity_sign_up_code.*
-import com.example.safetrip.SignUpNumber
-import com.example.safetrip.login_signup.OtpForgot
+import com.chaos.view.PinView
+import com.example.safetrip.R
+import com.example.safetrip.SignUpPin
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.*
+import kotlinx.android.synthetic.main.activity_otp_forgot.*
 import java.util.concurrent.TimeUnit
 
-class SignUpCode : AppCompatActivity() {
+class OtpForgot : AppCompatActivity() {
+
     private lateinit var auth: FirebaseAuth
     private lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
     private lateinit var callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
     private lateinit var storedVerificationId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        auth = FirebaseAuth.getInstance()
+
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_up_code)
+        setContentView(R.layout.activity_otp_forgot)
         window.statusBarColor = ContextCompat.getColor(this, R.color.status_bar)
 
-        auth=FirebaseAuth.getInstance()
-
-        txtResendCode.setOnClickListener{
+        textResendCodeOTP.setOnClickListener{
             val preferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
             val pnc = preferences.getString("PHONE_NUMBER", "PHONE-NUMBER").toString()
             resendOtpCode(pnc)
@@ -57,38 +55,32 @@ class SignUpCode : AppCompatActivity() {
             }
         }
 
-        val storedVerificationId = intent.getStringExtra("storedVerificationId")
+        storedVerificationId = intent.getStringExtra("storedVerificationId").toString()
 
-        val verify = findViewById<Button>(R.id.phoneVerify)
-        val otpGiven = findViewById<EditText>(R.id.otp_view)
-
-        verify.setOnClickListener{
-            val otp=otpGiven.text.toString().trim()
-            if(!otp.isEmpty()){
+        phoneVerify.setOnClickListener{
+            val verifyOtp = findViewById<PinView>(R.id.otp_view).text.toString().trim()
+            if(!verifyOtp.isEmpty())
+            {
                 val credential : PhoneAuthCredential = PhoneAuthProvider.getCredential(
-                    storedVerificationId.toString(), otp)
-                signInWithPhoneAuthCredential(credential)
+                    storedVerificationId, verifyOtp)
+                signInWithPhone(credential)
 
-            }else{
-                Toast.makeText(this,"Enter OTP",Toast.LENGTH_SHORT).show()
             }
-
         }
-
-
     }
 
-    private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
+    private fun signInWithPhone(credential: PhoneAuthCredential) {
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    startActivity(Intent(applicationContext, SignUpPin::class.java))
+                    startActivity(Intent(this, ResetPin::class.java))
                     finish()
+// ...
                 } else {
 // Sign in failed, display a message and update the UI
                     if (task.exception is FirebaseAuthInvalidCredentialsException) {
 // The verification code entered was invalid
-                        Toast.makeText(this,"Invalid OTP",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this,"Invalid OTP", Toast.LENGTH_SHORT).show()
                     }
                 }
             }

@@ -53,7 +53,7 @@ class CashIn : AppCompatActivity() {
                 clientId = cId,
                 environment = SANDBOX,
                 returnUrl = "${BuildConfig.APPLICATION_ID}://paypalpay",
-                currencyCode = CurrencyCode.USD,
+                currencyCode = CurrencyCode.PHP,
                 userAction = UserAction.PAY_NOW,
                 settingsConfig = SettingsConfig(
                     loggingEnabled = true,
@@ -77,7 +77,7 @@ class CashIn : AppCompatActivity() {
                         listOf(
                             PurchaseUnit(
                                 amount =
-                                Amount(currencyCode = CurrencyCode.USD, value = payAmount.text.toString())
+                                Amount(currencyCode = CurrencyCode.PHP, value = payAmount.text.toString())
                             )
                         )
                     )

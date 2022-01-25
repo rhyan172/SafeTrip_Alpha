@@ -1,5 +1,6 @@
 package com.example.safetrip
 
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -7,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.maps.model.Dash
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -41,6 +43,10 @@ class HomeFragment:Fragment(R.layout.fragment_home) {
         })
         getView()?.findViewById<TextView>(R.id.textViewWalletHome)?.text = creditHome
         rideBtn.setOnClickListener {
+            val sharedPreferences = requireActivity().getSharedPreferences("SWITCH_FARE_POINTS", Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.putBoolean("SFP", true)
+            editor.apply()
             val intent = Intent (activity, ScanPay::class.java)
             activity?.startActivity(intent)
         }

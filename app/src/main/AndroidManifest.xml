@@ -20,8 +20,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SafeTrip"
         android:usesCleartextTraffic="true">
-
-
+        <activity
+            android:name=".TransactionHistory"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name=".login_signup.ResetPin"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name=".login_signup.OtpForgot"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -32,10 +42,8 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
-        <!-- for metadata -->
-        <activity android:name=".MainActivity" />
-        <!-- declaration for splash screen -->
+            android:value="@string/google_maps_key" /> <!-- for metadata -->
+        <activity android:name=".MainActivity" /> <!-- declaration for splash screen -->
         <activity
             android:name=".splash_screen.SplashscreenActivity"
             android:exported="true"
@@ -44,13 +52,11 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-
             </intent-filter>
         </activity> <!-- declaration for intro slider -->
         <activity
             android:name=".intro_slider.OnBoardScreen"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <!-- declaration for login_signup -->
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- declaration for login_signup -->
         <activity
             android:name=".LoginSignup"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -74,8 +80,7 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".SignUpConfirm"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <!-- Declaration for Main/Dashboard -->
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- Declaration for Main/Dashboard -->
         <activity
             android:name=".EditNewPin"
             android:exported="true"
@@ -85,7 +90,7 @@
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".EditNum"
+            android:name=".DriverDetails"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
@@ -119,17 +124,12 @@
         <activity
             android:name=".dashboard.CashIn"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <!-- for qr code -->
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- for qr code -->
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="fullSensor"
             tools:replace="screenOrientation" />
-        <activity
-            android:name=".dashboard.RideComplete"
-            android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <!-- for maps -->
+         <!-- for maps -->
         <activity
             android:name=".dashboard.SafeTripLocation"
             android:exported="true"

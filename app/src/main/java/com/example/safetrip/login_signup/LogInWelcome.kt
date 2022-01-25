@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -17,18 +18,27 @@ import com.chaos.view.PinView
 import com.example.safetrip.R
 import com.example.safetrip.R.layout.activity_log_in_welcome
 import com.example.safetrip.DashboardMain
+import com.example.safetrip.login_signup.OtpForgot
+import com.google.firebase.FirebaseException
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.PhoneAuthCredential
+import com.google.firebase.auth.PhoneAuthOptions
+import com.google.firebase.auth.PhoneAuthProvider
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_log_in_welcome.*
 import java.util.concurrent.Executor
+import java.util.concurrent.TimeUnit
 
 class LogInWelcome : AppCompatActivity() {
 
     private lateinit var preferences: SharedPreferences
     private lateinit var database: DatabaseReference
-
     private lateinit var btnFingerprint: ImageView
-
+    private lateinit var auth: FirebaseAuth
+    private lateinit var storedVerificationId: String
+    private lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
+    private lateinit var callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
     private lateinit var executor: Executor
     private lateinit var biometricPrompt: androidx.biometric.BiometricPrompt
     private lateinit var promptInfo: androidx.biometric.BiometricPrompt.PromptInfo
@@ -36,13 +46,47 @@ class LogInWelcome : AppCompatActivity() {
     private var FirstName: String = ""
     private var LastName: String = ""
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        auth = FirebaseAuth.getInstance()
+
         super.onCreate(savedInstanceState)
         setContentView(activity_log_in_welcome)
         window.statusBarColor = ContextCompat.getColor(this, R.color.status_bar)
 
         getUserPin()
+
+        textViewForgotPin.setOnClickListener(){
+            preferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+            val pnc = preferences.getString("PHONE_NUMBER", "PHONE-NUMBER").toString()
+            sendVerification(pnc)
+        }
+
+        callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+            override fun onVerificationCompleted(credential: PhoneAuthCredential) {
+                Toast.makeText(applicationContext, "OTP is sent to your number.", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(applicationContext, OtpForgot::class.java))
+            }
+
+            override fun onVerificationFailed(e: FirebaseException) {
+                Toast.makeText(applicationContext, "Failed", Toast.LENGTH_LONG).show()
+                finish()
+            }
+
+            override fun onCodeSent(
+                verificationId: String,
+                token: PhoneAuthProvider.ForceResendingToken
+            ) {
+
+                Log.d("TAG", "onCodeSent:$verificationId")
+                storedVerificationId = verificationId
+                resendToken = token
+                val intent = Intent(applicationContext, OtpForgot::class.java)
+                intent.putExtra("storedVerificationId", storedVerificationId)
+                startActivity(intent)
+            }
+        }
 
         btnFingerprint = findViewById(R.id.finger_print)
         executor = ContextCompat.getMainExecutor(this)
@@ -55,6 +99,7 @@ class LogInWelcome : AppCompatActivity() {
             override fun onAuthenticationSucceeded(result: androidx.biometric.BiometricPrompt.AuthenticationResult) {
                 super.onAuthenticationSucceeded(result)
                 startActivity(Intent(applicationContext, DashboardMain::class.java))
+                finish()
             }
 
             override fun onAuthenticationFailed() {
@@ -74,7 +119,6 @@ class LogInWelcome : AppCompatActivity() {
         }
 
 
-
         val pincode = findViewById<PinView>(R.id.pin_login_view)
 
         pincode.addTextChangedListener(object : TextWatcher {
@@ -91,6 +135,10 @@ class LogInWelcome : AppCompatActivity() {
                 if(pinval.length == 4){
                     val pin = pincode.text.toString().trim()
                     if(pin == userPin){
+                        val sharedPreferences = getSharedPreferences("ONE_TIME_ACTIVITY", Context.MODE_PRIVATE)
+                        val editor = sharedPreferences.edit()
+                        editor.putBoolean("ONE_TIME", true)
+                        editor.apply()
                         startActivity(Intent(applicationContext, DashboardMain::class.java))
                         finish()
                     }
@@ -108,12 +156,14 @@ class LogInWelcome : AppCompatActivity() {
 
         val fingerCheck = preferences.getBoolean("SWITCH_KEY", false)
 
-        if(fingerCheck == true){
+        if(fingerCheck == true)
+        {
             imgFinger.visibility = View.VISIBLE
             txtTouch.visibility = View.VISIBLE
             biometricPrompt.authenticate(promptInfo)
         }
-        else{
+        else
+        {
             imgFinger.visibility = View.GONE
             txtTouch.visibility = View.GONE
         }
@@ -137,5 +187,15 @@ class LogInWelcome : AppCompatActivity() {
                 textViewN.text = fullName
             }
         }
+    }
+
+    private fun sendVerification(pnc: String) {
+        val options = PhoneAuthOptions.newBuilder(auth)
+            .setPhoneNumber(pnc) // Phone number to verify
+            .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+            .setActivity(this) // Activity (for callback binding)
+            .setCallbacks(callbacks) // OnVerificationStateChangedCallbacks
+            .build()
+        PhoneAuthProvider.verifyPhoneNumber(options)
     }
 }

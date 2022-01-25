@@ -71,11 +71,12 @@ class SafeTripLocation : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMa
                 txtDriverNum.text = driverNumber.toString()
             }
         }
-
         val btnDrop = findViewById<Button>(R.id.btnDrop)
         btnDrop.setOnClickListener()
         {
-            startActivity(Intent(this, RideComplete::class.java))
+            DashboardMain().finish()
+            startActivity(Intent(this, DashboardMain::class.java))
+            finish()
         }
     }
 

@@ -38,9 +38,15 @@ class SignUpNumber : AppCompatActivity() {
 
         window.statusBarColor = ContextCompat.getColor(this, R.color.status_bar)
 
+        val sign = findViewById<Button>(R.id.phoneNext)
+        sign.setOnClickListener {
+            signUp()
+        }
+
         callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
+                startActivity(Intent(applicationContext, SignUpCode::class.java))
                 Toast.makeText(applicationContext, "OTP is sent to your number.", Toast.LENGTH_SHORT).show()
             }
 
@@ -63,10 +69,6 @@ class SignUpNumber : AppCompatActivity() {
             }
         }
 
-        val sign = findViewById<Button>(R.id.phoneNext)
-        sign.setOnClickListener {
-            signUp()
-        }
     }
 
     private fun signUp() {
@@ -82,19 +84,16 @@ class SignUpNumber : AppCompatActivity() {
                     val numberP = pnumber.toString()
                     editor.putString("PHONE_NUMBER", numberP)
                     editor.apply()
-                    startActivity(Intent(this, LogInWelcome::class.java))
                 }
             }
             else{
                 if (!number.isEmpty()) {
+                    number = "+63" + number
                     sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
                     val editor = sharedPreferences.edit()
                     editor.putString("PHONE_NUMBER", number)
                     editor.apply()
-                    number = "+63" + number
                     sendVerificationcode(number)
-                    val intent = Intent(this, SignUpCode::class.java)
-                    startActivity(intent)
                 } else {
                     Toast.makeText(this, "Enter mobile number", Toast.LENGTH_SHORT).show()
                 }

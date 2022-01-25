@@ -39,9 +39,7 @@ class LoginSignup : AppCompatActivity() {
 
         val textView = findViewById<TextView>(textLogin)
         textView.setOnClickListener {
-            val editor = sharedPreferences.edit()
-            editor.putBoolean("ONE_TIME", true)
-            editor.apply()
+
             val intent = Intent(this, LogInMain::class.java)
             startActivity(intent)
         }
