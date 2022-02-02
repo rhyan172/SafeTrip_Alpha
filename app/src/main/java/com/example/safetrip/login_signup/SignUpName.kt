@@ -75,6 +75,11 @@ class SignUpName : AppCompatActivity() {
                     saveName()
                     val intent = Intent(this, LogInMain::class.java)
                     startActivity(intent)
+                    SignUpNumber().finish()
+                    SignUpCode().finish()
+                    SignUpPin().finish()
+                    SignUpConfirm().finish()
+                    this.finish()
                     dialog.dismiss()
                 }
             }

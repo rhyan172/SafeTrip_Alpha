@@ -1,7 +1,5 @@
 package com.example.safetrip.dashboard
 
-
-
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -33,7 +31,6 @@ import com.paypal.checkout.order.Order
 import com.paypal.checkout.order.PurchaseUnit
 import com.paypal.checkout.config.Environment.SANDBOX
 import kotlinx.android.synthetic.main.activity_cash_in.*
-
 
 class CashIn : AppCompatActivity() {
 

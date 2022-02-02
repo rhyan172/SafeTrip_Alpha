@@ -45,7 +45,6 @@ class RewardsFragment:Fragment(R.layout.fragment_rewards) {
                 database.child("Fare").get().addOnSuccessListener {
                     val pointDeduction = it.child("reward").value
                     pointsDeduction = pointDeduction.toString()
-
                     getView()?.findViewById<TextView>(R.id.txtPointsDeduction)?.text= pointsDeduction
                 }
             }

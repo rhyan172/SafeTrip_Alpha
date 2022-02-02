@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2a7b90"
+    tools:context=".UpdateDriver">
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="UPDATE DRIVER"
+        android:textColor="@color/white"
+        android:textSize="25sp" />
+
+    <EditText
+        android:id="@+id/updateDriverNum"
+        android:layout_width="325dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/textView8"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/text_main"
+        android:ems="10"
+        android:fontFamily="@font/montserrat_regular"
+        android:hint="Phone Number"
+        android:paddingLeft="20dp"
+        android:textColor="@color/white"
+        android:textColorHint="#7f7f7f" />
+
+    <EditText
+        android:id="@+id/updateDriverName"
+        android:layout_width="325dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/updateDriverNum"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="Driver Name"
+        android:layout_marginTop="20dp"
+        android:textColorHint="#7f7f7f"
+        android:textColor="@color/white"
+        android:background="@drawable/text_main"
+        android:fontFamily="@font/montserrat_regular"
+        android:paddingLeft="20dp" />
+
+    <EditText
+        android:id="@+id/updateDriverPlate"
+        android:layout_width="325dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/updateDriverName"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="Plate Number"
+        android:layout_marginTop="20dp"
+        android:textColorHint="#7f7f7f"
+        android:textColor="@color/white"
+        android:background="@drawable/text_main"
+        android:fontFamily="@font/montserrat_regular"
+        android:paddingLeft="20dp" />
+
+    <Button
+        android:id="@+id/updateDriverBtn"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/updateDriverPlate"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/button"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Update"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+</RelativeLayout>

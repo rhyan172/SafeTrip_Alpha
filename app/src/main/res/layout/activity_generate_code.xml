@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2a7b90"
+    tools:context=".GenerateCode">
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Generate QR Code"
+        android:textColor="@color/white"
+        android:textSize="28sp" />
+
+    <ImageView
+        android:id="@+id/qrCode"
+        android:layout_width="230dp"
+        android:layout_height="230dp"
+        android:layout_below="@id/textView8"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/code" />
+
+    <EditText
+        android:id="@+id/phoneExtend"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/qrCode"
+        android:layout_alignLeft="@id/textView8"
+        android:ems="10"
+        android:text="+63"
+        android:focusableInTouchMode="false"
+        android:focusable="false"
+        android:layout_marginTop="60dp"
+        android:textColorHint="#7f7f7f"
+        android:textColor="@color/white"
+        android:background="@drawable/text_extend"
+        android:fontFamily="@font/montserrat_regular"
+        android:paddingLeft="20dp" />
+
+    <EditText
+        android:id="@+id/driverQrCode"
+        android:layout_width="192dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/qrCode"
+        android:layout_alignRight="@id/textView8"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/text_input"
+        android:ems="10"
+        android:fontFamily="@font/montserrat_regular"
+        android:hint="912345678"
+        android:inputType="number"
+        android:paddingLeft="20dp"
+        android:textColor="@color/white"
+        android:textColorHint="#7f7f7f" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/phoneExtend"
+        android:layout_marginLeft="90dp"
+        android:layout_marginTop="-30dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Driver Phone Number"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+
+    <Button
+        android:id="@+id/generateQrBtn"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/phoneExtend"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/button"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Generate"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+
+
+</RelativeLayout>

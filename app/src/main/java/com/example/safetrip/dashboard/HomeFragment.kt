@@ -29,7 +29,6 @@ class HomeFragment:Fragment(R.layout.fragment_home) {
             override fun onCancelled(error: DatabaseError) {
 
             }
-
             override fun onDataChange(snapshot: DataSnapshot) {
                 database = FirebaseDatabase.getInstance().reference
                 database.child("Names/$phoneNumberHome").get().addOnSuccessListener {

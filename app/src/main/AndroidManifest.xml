@@ -134,6 +134,30 @@
             android:name=".dashboard.SafeTripLocation"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <!-- for admin dashboard-->
+        <activity
+            android:name=".AddDriver"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".Admin"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".DeactivateDriver"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".GenerateCode"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".UpdateDriver"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".UpdateFare"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
-
 </manifest>

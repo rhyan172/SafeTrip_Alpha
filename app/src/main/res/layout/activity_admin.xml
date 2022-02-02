@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2a7b90"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
+    tools:context=".Admin">
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="50dp"
+        android:src="@mipmap/admin" />
+
+    <TextView
+        android:id="@+id/textViewName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="145dp"
+        android:layout_marginTop="100dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Administrator"
+        android:textColor="@color/white"
+        android:textSize="25sp" />
+
+
+    <View
+        android:layout_width="350dp"
+        android:layout_height="1dp"
+        android:background="@color/white"
+        android:layout_below="@id/imageView3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/imageView3"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="60dp"
+        android:src="@mipmap/fare" />
+
+    <TextView
+        android:id="@+id/textViewUpdateFare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageView3"
+        android:layout_marginLeft="90dp"
+        android:layout_marginTop="67dp"
+        android:clickable="true"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Update Fare"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/imageView5"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:src="@mipmap/add" />
+
+    <TextView
+        android:id="@+id/textViewAddDriver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewUpdateFare"
+        android:layout_marginLeft="90dp"
+        android:layout_marginTop="46dp"
+        android:clickable="true"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Add New Driver"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/imageView6"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:src="@mipmap/update" />
+
+    <TextView
+        android:id="@+id/textViewUpdateDriver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewAddDriver"
+        android:layout_marginLeft="90dp"
+        android:layout_marginTop="47dp"
+        android:clickable="true"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Update Driver"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/imageView7"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:src="@mipmap/disable" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/imageView8"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:src="@mipmap/code" />
+
+    <TextView
+        android:id="@+id/textViewDeactivateDriver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewUpdateDriver"
+        android:layout_marginLeft="90dp"
+        android:layout_marginTop="48dp"
+        android:clickable="true"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Deactivate Driver"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textViewGenerateQr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewDeactivateDriver"
+        android:layout_marginLeft="90dp"
+        android:layout_marginTop="48dp"
+        android:clickable="true"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Generate QR Code"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/adminLogoutBtn"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageView9"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/logout"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="LOG OUT"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+
+</RelativeLayout>

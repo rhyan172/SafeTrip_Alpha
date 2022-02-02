@@ -84,6 +84,8 @@ class SignUpNumber : AppCompatActivity() {
                     val numberP = pnumber.toString()
                     editor.putString("PHONE_NUMBER", numberP)
                     editor.apply()
+                    startActivity(Intent(this, LogInWelcome::class.java))
+                    finish()
                 }
             }
             else{

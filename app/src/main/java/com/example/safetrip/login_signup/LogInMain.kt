@@ -45,9 +45,11 @@ class LogInMain : AppCompatActivity() {
                     login()
 
                 }
-                else{
+                else
+                {
                     Toast.makeText(this, "User doesn't Exist", Toast.LENGTH_SHORT).show()
                     loginDriver()
+                    loginAdmin()
                 }
             }
         }
@@ -75,6 +77,27 @@ class LogInMain : AppCompatActivity() {
             else
             {
                 Toast.makeText(this, "driver does not exist", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun loginAdmin(){
+        database = FirebaseDatabase.getInstance().reference
+        sharedPreferences = getSharedPreferences("ADMIN", Context.MODE_PRIVATE)
+        val checkPhoneNumAdmin = loginPhone.text.toString()
+        database.child("Admin/$checkPhoneNumAdmin").get().addOnSuccessListener {
+            if(it.exists())
+            {
+                val adminNumber = it.child("adminNumber").value
+                val aNumber = adminNumber.toString()
+                val editor = sharedPreferences.edit()
+                editor.putString("ADMIN_NUMBER", aNumber)
+                editor.apply()
+                startActivity(Intent(this, Admin::class.java))
+            }
+            else
+            {
+                Toast.makeText(this, "admin does not exist", Toast.LENGTH_SHORT).show()
             }
         }
     }

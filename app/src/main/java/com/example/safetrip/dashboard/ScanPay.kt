@@ -169,6 +169,10 @@ class ScanPay : AppCompatActivity() {
                         database.child("Names/$pnc/TransactionHistory/$transactNumber/totalFare").setValue(fare.text.toString())
                         database.child("Names/$pnc/TransactionHistory/$transactNumber/dateAndTime").setValue(currentDate)
 
+                        preferences = getSharedPreferences("SHARED_PREF", MODE_PRIVATE)
+                        val editor = preferences.edit()
+                        editor.putString("DRIVER_INFORMATION", result.contents)
+
                         startActivity(Intent(this, SafeTripLocation::class.java))
                         Toast.makeText(this, "Scanned Success", Toast.LENGTH_LONG).show()
                         finish()
