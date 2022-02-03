@@ -24,19 +24,19 @@
         android:layout_height="50dp"
         android:layout_below="@id/textView8"
         android:layout_alignLeft="@id/textView8"
-        android:ems="10"
-        android:text="+63"
-        android:focusableInTouchMode="false"
-        android:focusable="false"
         android:layout_marginTop="30dp"
-        android:textColorHint="#7f7f7f"
-        android:textColor="@color/white"
         android:background="@drawable/text_extend"
+        android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:fontFamily="@font/montserrat_regular"
-        android:paddingLeft="20dp" />
+        android:paddingLeft="20dp"
+        android:text="+63"
+        android:textColor="@color/white"
+        android:textColorHint="#7f7f7f" />
 
     <EditText
-        android:id="@+id/deactivateDriver"
+        android:id="@+id/findDriver"
         android:layout_width="192dp"
         android:layout_height="50dp"
         android:layout_below="@id/textView8"
@@ -52,10 +52,10 @@
         android:textColorHint="#7f7f7f" />
 
     <Button
-        android:id="@+id/deactivateDriverBtn"
+        android:id="@+id/findDriverBtn"
         android:layout_width="270dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/deactivateDriver"
+        android:layout_below="@id/findDriver"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:background="@drawable/button"

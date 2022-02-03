@@ -85,7 +85,7 @@ class LogInMain : AppCompatActivity() {
         database = FirebaseDatabase.getInstance().reference
         sharedPreferences = getSharedPreferences("ADMIN", Context.MODE_PRIVATE)
         val checkPhoneNumAdmin = loginPhone.text.toString()
-        database.child("Admin/$checkPhoneNumAdmin").get().addOnSuccessListener {
+        database.child("Admin/+63$checkPhoneNumAdmin").get().addOnSuccessListener {
             if(it.exists())
             {
                 val adminNumber = it.child("adminNumber").value

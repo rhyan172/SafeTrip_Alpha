@@ -10,5 +10,6 @@ class UpdateDriver : AppCompatActivity() {
         setContentView(R.layout.activity_update_driver)
         window.statusBarColor = ContextCompat.getColor(this, R.color.status_bar)
 
+
     }
 }

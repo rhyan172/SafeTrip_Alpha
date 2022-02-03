@@ -32,7 +32,7 @@ class UpdateFare : AppCompatActivity() {
         val newFare = editFare.text.toString().toFloat()
 
         database = FirebaseDatabase.getInstance().reference
-        database.child("Fare/price").setValue(newFare)
+        database.child("Fare/price").setValue(newFare.toString())
         Toast.makeText(this, "Fare updated!", Toast.LENGTH_SHORT).show()
     }
 
@@ -56,7 +56,7 @@ class UpdateFare : AppCompatActivity() {
                 points = oldPoints.toString().toInt()
 
                 editFare.setText(fare)
-                editPoints.setText(points)
+                editPoints.setText(points.toString())
             }
         }
     }

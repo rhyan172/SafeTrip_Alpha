@@ -64,14 +64,6 @@ class Admin : AppCompatActivity() {
             startActivity(Intent(this, AddDriver::class.java))
         }
 
-        //update driver button
-        textViewUpdateDriver.setOnClickListener{
-            startActivity(Intent(this, UpdateDriver::class.java))
-        }
-        imageView7.setOnClickListener{
-            startActivity(Intent(this, UpdateDriver::class.java))
-        }
-
         //deactivate driver button
         textViewDeactivateDriver.setOnClickListener{
             startActivity(Intent(this, DeactivateDriver::class.java))

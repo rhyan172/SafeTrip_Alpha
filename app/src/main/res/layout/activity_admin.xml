@@ -82,32 +82,10 @@
         android:textSize="20sp" />
 
     <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_below="@id/imageView6"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="30dp"
-        android:src="@mipmap/update" />
-
-    <TextView
-        android:id="@+id/textViewUpdateDriver"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textViewAddDriver"
-        android:layout_marginLeft="90dp"
-        android:layout_marginTop="47dp"
-        android:clickable="true"
-        android:fontFamily="@font/montserrat_bold"
-        android:text="Update Driver"
-        android:textColor="@color/white"
-        android:textSize="20sp" />
-
-    <ImageView
         android:id="@+id/imageView8"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_below="@id/imageView7"
+        android:layout_below="@id/imageView6"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="30dp"
         android:src="@mipmap/disable" />
@@ -125,7 +103,7 @@
         android:id="@+id/textViewDeactivateDriver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textViewUpdateDriver"
+        android:layout_below="@id/textViewAddDriver"
         android:layout_marginLeft="90dp"
         android:layout_marginTop="48dp"
         android:clickable="true"

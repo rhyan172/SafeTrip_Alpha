@@ -159,5 +159,9 @@
             android:name=".UpdateFare"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".UpdateFindDriver"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 </manifest>

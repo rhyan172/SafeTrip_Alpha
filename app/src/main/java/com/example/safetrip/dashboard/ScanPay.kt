@@ -172,7 +172,7 @@ class ScanPay : AppCompatActivity() {
                         preferences = getSharedPreferences("SHARED_PREF", MODE_PRIVATE)
                         val editor = preferences.edit()
                         editor.putString("DRIVER_INFORMATION", result.contents)
-
+                        editor.apply()
                         startActivity(Intent(this, SafeTripLocation::class.java))
                         Toast.makeText(this, "Scanned Success", Toast.LENGTH_LONG).show()
                         finish()
