@@ -47,7 +47,7 @@ class LogInMain : AppCompatActivity() {
                 }
                 else
                 {
-                    Toast.makeText(this, "User doesn't Exist", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this, "User doesn't Exist", Toast.LENGTH_SHORT).show()
                     loginDriver()
                     loginAdmin()
                 }
@@ -76,7 +76,7 @@ class LogInMain : AppCompatActivity() {
             }
             else
             {
-                Toast.makeText(this, "driver does not exist", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this, "driver does not exist", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -97,7 +97,7 @@ class LogInMain : AppCompatActivity() {
             }
             else
             {
-                Toast.makeText(this, "admin does not exist", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this, "admin does not exist", Toast.LENGTH_SHORT).show()
             }
         }
     }
